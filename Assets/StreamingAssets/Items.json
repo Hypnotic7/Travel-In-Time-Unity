@@ -2,12 +2,13 @@
   {
     "id": 0,
     "title": "Steel Gloves",
-    "value": 6
-    
+    "value": 6,
+    "slug": "steel_gloves" 
   },
   {
     "id": 1,
     "title": "Great Stick",
-    "value": 400
+    "value": 400,
+    "slug": "great_stick" 
   }
 ]
