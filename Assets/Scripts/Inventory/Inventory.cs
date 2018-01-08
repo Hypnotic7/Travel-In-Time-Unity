@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using Assets.Scripts.Items;
 using Items;
 using UnityEngine;
@@ -8,15 +6,12 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-     public GameObject inventoryPanel;
+    public GameObject inventoryPanel;
     public GameObject slotPanel;
     public ItemDatabase database;
 
     public GameObject inventorySlot;
     public GameObject inventoryItem;
-    //public GameObject backgroundPanel;
-
-
 
     public const int slotAmount = 5;
     public List<Item> items = new List<Item>();
@@ -37,6 +32,10 @@ public class Inventory : MonoBehaviour
             slots[i].transform.SetParent(inventoryPanel.transform,false);
 	    }
         AddItem(0);
+	    AddItem(0);
+	    AddItem(0);
+	    AddItem(0);
+	    AddItem(0);
         AddItem(1);
 
 	}
@@ -44,26 +43,52 @@ public class Inventory : MonoBehaviour
     public void AddItem(int id)
     {
         Item itemToAdd = database.FetchItemByID(id);
-        for (int i = 0; i < items.Count; i++)
+
+    
+
+        if (itemToAdd.Stackable && CheckForItemInInventory(itemToAdd))
         {
-            if (items[i].ID == -1)
+            for (int j = 0; j < items.Count; j++)
             {
-                items[i] = itemToAdd;
-               
-                GameObject itemObj = Instantiate(inventoryItem);
-                itemObj.transform.SetParent(slots[i].transform);
-                itemObj.transform.localPosition = Vector2.zero;
-                itemObj.GetComponent<Image>().sprite = itemToAdd.Sprite;
-                
-                itemObj.transform.localScale = new Vector3(0.8f,0.8f,0.8f);
-                itemObj.name = itemToAdd.Title;
-                break;
+                if (items[j].ID == id)
+                {
+                    ItemData data = slots[j].transform.GetChild(0).GetComponent<ItemData>();
+                    data.amount++;
+                    data.transform.GetChild(0).GetComponent<Text>().text = data.amount.ToString();
+                    break;
+                }
             }
         }
+        else
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].ID == -1)
+                {
+                    items[i] = itemToAdd;
+
+                    GameObject itemObj = Instantiate(inventoryItem);
+                    itemObj.GetComponent<ItemData>().Item = itemToAdd;
+                    itemObj.transform.SetParent(slots[i].transform);
+                    itemObj.transform.localPosition = Vector2.zero;
+                    itemObj.GetComponent<Image>().sprite = itemToAdd.Sprite;
+
+                    itemObj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                    itemObj.name = itemToAdd.Title;
+                    break;
+                }
+            }
+        }
+            
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    public bool CheckForItemInInventory(Item item)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i].ID == item.ID)
+                return true;
+        }
+        return false;
+    }
 }

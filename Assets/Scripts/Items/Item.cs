@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-using UnityEngine.UI;
-
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Items
 {
@@ -14,13 +8,15 @@ namespace Assets.Scripts.Items
         public string Title { get; set; }
         public int Value { get; set; }
         public Sprite Sprite { get; set; }
+        public bool Stackable { get; set; }
         public string Slug { get; set; }
 
-        public Item(int id, string title, int value,string slug)
+        public Item(int id, string title, int value,bool stackable,string slug)
         {
             this.ID = id;
             this.Title = title;
             this.Value = value;
+            this.Stackable = stackable;
             this.Slug = slug;
             this.Sprite = Resources.Load<Sprite>("Sprites/Items/" + slug) as Sprite;
 

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Assets.Scripts.Items;
 using LitJson;
 using UnityEngine;
@@ -35,7 +34,9 @@ namespace Items
         {
             for (int index = 0; index < itemData.Count; index++)
             {
-                database.Add(new Item((int)itemData[index]["id"], itemData[index]["title"].ToString(),(int)itemData[index]["value"],itemData[index]["slug"].ToString()));
+                database.Add(new Item((int)itemData[index]["id"], itemData[index]["title"].ToString(),
+                                      (int)itemData[index]["value"],(bool)itemData[index]["stackable"],
+                                      itemData[index]["slug"].ToString()));
             }
         }
     }

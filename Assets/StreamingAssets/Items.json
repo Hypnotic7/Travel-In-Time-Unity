@@ -3,12 +3,14 @@
     "id": 0,
     "title": "Steel Gloves",
     "value": 6,
+    "stackable": true, 
     "slug": "steel_gloves" 
   },
   {
     "id": 1,
     "title": "Great Stick",
     "value": 400,
+    "stackable": false, 
     "slug": "great_stick" 
   }
 ]
