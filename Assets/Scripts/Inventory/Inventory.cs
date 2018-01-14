@@ -44,8 +44,6 @@ public class Inventory : MonoBehaviour
     {
         Item itemToAdd = database.FetchItemByID(id);
 
-    
-
         if (itemToAdd.Stackable && CheckForItemInInventory(itemToAdd))
         {
             for (int j = 0; j < items.Count; j++)
@@ -68,11 +66,10 @@ public class Inventory : MonoBehaviour
                     items[i] = itemToAdd;
 
                     GameObject itemObj = Instantiate(inventoryItem);
-                    itemObj.GetComponent<ItemData>().Item = itemToAdd;
+                    itemObj.GetComponent<ItemData>().item = itemToAdd;
                     itemObj.transform.SetParent(slots[i].transform);
                     itemObj.transform.localPosition = Vector2.zero;
                     itemObj.GetComponent<Image>().sprite = itemToAdd.Sprite;
-
                     itemObj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
                     itemObj.name = itemToAdd.Title;
                     break;
