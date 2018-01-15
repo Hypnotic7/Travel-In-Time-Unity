@@ -70,7 +70,27 @@ namespace Assets.Scripts.Items
 
             if (item.ID == 0)
             {
-                    SceneManager.LoadScene("Past_Time_Test");
+                GameObject go = GameObject.Find("GameManager");
+                if (go == null)
+                {
+                    Debug.LogError("Failed to find an object named 'GameManager'");
+                    this.enabled = false;
+                    return;
+                }
+
+                GameManager gm = go.GetComponent<GameManager>();
+
+                if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test")
+                {
+                    gm.currentTime = "Present_Time_Test";
+                    gm.LoadScene(PlayerPrefs.GetString("CurrentTime"));
+                }
+                else if(PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
+                {
+                    gm.currentTime = "Past_Time_Test";
+                    gm.LoadScene(PlayerPrefs.GetString("CurrentTime"));
+                }
+                
 
 
             }
