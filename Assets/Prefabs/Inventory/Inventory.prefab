@@ -53,9 +53,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 1748007165288176}
-  inventorySlot: {fileID: 0}
-  inventoryItem: {fileID: 0}
+  slotPanel: {fileID: 0}
   database: {fileID: 114824251982303038}
+  inventorySlot: {fileID: 1200925717233722, guid: 460ca2a13f00e6c47b2c323892f28153,
+    type: 2}
+  inventoryItem: {fileID: 1215761192689536, guid: d9de10d745f35dd40bf2e64a74a3477a,
+    type: 2}
   slots: []
 --- !u!114 &114824251982303038
 MonoBehaviour:

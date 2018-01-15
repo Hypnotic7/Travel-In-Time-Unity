@@ -4,21 +4,36 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Items
 {
-    public class ItemData : MonoBehaviour, IBeginDragHandler,IDragHandler, IEndDragHandler
+    public class ItemData : MonoBehaviour, IBeginDragHandler,IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         public Item item;
         public int amount;
+        public int slot;
+        
+        private Vector2 offset;
+        private Inventory inv;
+        private Tooltip tooltip;
+        public string levelToLoad;
+        public bool ChangedScenes;
 
-
-        public void OnPointerDown(PointerEventData eventData)
+        void Start()
         {
+            inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+            tooltip = inv.GetComponent<Tooltip>();
+        }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            Debug.Log(item.ID);
             if (item.ID != -1)
             {
-                
-                this.transform.position = eventData.position;
+                offset = eventData.position - new Vector2(this.transform.position.x, this.transform.position.y);
+                this.transform.position = eventData.position - offset;
+                GetComponent<CanvasGroup>().blocksRaycasts = false;
             }
         }
 
@@ -27,22 +42,41 @@ namespace Assets.Scripts.Items
             Debug.Log(item.ID);
             if (item.ID != -1)
             {
-                this.transform.position = eventData.position;
+                this.transform.position = eventData.position - offset;
             }
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            throw new NotImplementedException();
+            this.transform.SetParent(inv.slots[slot].transform);
+            this.transform.position = inv.slots[slot].transform.position;
+            GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
 
-        public void OnBeginDrag(PointerEventData eventData)
+
+        public void OnPointerEnter(PointerEventData eventData)
         {
-            Debug.Log(item.ID);
-            if (item.ID != -1)
+            tooltip.Activate(item);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            tooltip.Deactivate();
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            
+
+            if (item.ID == 0)
             {
-                this.transform.position = eventData.position;
+                    SceneManager.LoadScene("Past_Time_Test");
+
+
             }
+            
+
+
         }
     }
 }

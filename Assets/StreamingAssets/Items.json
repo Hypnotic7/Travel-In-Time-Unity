@@ -1,16 +1,16 @@
 ﻿[
   {
     "id": 0,
-    "title": "Steel Gloves",
+    "title": "Time Watch",
     "value": 6,
-    "stackable": true, 
-    "slug": "steel_gloves" 
+    "stackable": false,
+    "slug": "pocket_watch"
   },
   {
     "id": 1,
     "title": "Great Stick",
     "value": 400,
-    "stackable": false, 
-    "slug": "great_stick" 
+    "stackable": false,
+    "slug": "great_stick"
   }
 ]

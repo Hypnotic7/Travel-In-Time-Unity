@@ -10,6 +10,8 @@ namespace Assets.Scripts.Items
         public Sprite Sprite { get; set; }
         public bool Stackable { get; set; }
         public string Slug { get; set; }
+        public string Draggable { get; set; }
+        public bool ChangedScenes { get; set; }
 
         public Item(int id, string title, int value,bool stackable,string slug)
         {
