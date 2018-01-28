@@ -12,5 +12,12 @@
     "value": 400,
     "stackable": false,
     "slug": "great_stick"
+  },
+  {
+    "id": 2,
+    "title": "Key 3030",
+    "value": 100,
+    "stackable": true,
+    "slug": "key_room_1"
   }
 ]

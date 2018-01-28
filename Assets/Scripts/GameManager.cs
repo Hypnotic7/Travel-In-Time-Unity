@@ -14,6 +14,7 @@ namespace Assets.Scripts
         void Start()
         {
             currentTime = "Past_Time_Test";
+
         }
 
         // Update is called once per frame

@@ -13,7 +13,7 @@ namespace Assets.Scripts.Items
         public string Draggable { get; set; }
         public bool ChangedScenes { get; set; }
 
-        public Item(int id, string title, int value,bool stackable,string slug)
+        public Item(int id, string title, int value, bool stackable, string slug)
         {
             this.ID = id;
             this.Title = title;
@@ -21,7 +21,6 @@ namespace Assets.Scripts.Items
             this.Stackable = stackable;
             this.Slug = slug;
             this.Sprite = Resources.Load<Sprite>("Sprites/Items/" + slug) as Sprite;
-
         }
 
         public Item()
