@@ -13,6 +13,7 @@ public class InteractableManager : MonoBehaviour {
     public GameObject interactionPanel { get; set; }
     public List<GameObject> interactionWindows = new List<GameObject>(3);
     public GameObject safeInteraction;
+    public GameObject picturesInteraction;
 
 	// Use this for initialization
 	void Start ()
@@ -33,6 +34,12 @@ public class InteractableManager : MonoBehaviour {
                 safeInteraction = Instantiate(interactionWindows[0]);
                 safeInteraction.transform.SetParent(interactionWindow.transform, false);
                 interactionWindow.SetActive(true);
+        }
+        else if (interactableString == "Pictures")
+        {
+            picturesInteraction = Instantiate(interactionWindows[1]);
+            picturesInteraction.transform.SetParent(interactionWindow.transform, false);
+            interactionWindow.SetActive(true);
         }
         
     }

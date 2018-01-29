@@ -828,6 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAgent: {fileID: 0}
+  InteractableManager: {fileID: 0}
 --- !u!65 &79151420
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9863,9 +9864,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionWindows:
   - {fileID: 1734284302495734, guid: 60072b4cecece1647b203d43a4b0ae4a, type: 2}
-  - {fileID: 0}
+  - {fileID: 1021268865053898, guid: f57097e49ca388a4a8ac1d4ffb740497, type: 2}
   - {fileID: 0}
   safeInteraction: {fileID: 0}
+  picturesInteraction: {fileID: 0}
 --- !u!1 &1410754583
 GameObject:
   m_ObjectHideFlags: 0

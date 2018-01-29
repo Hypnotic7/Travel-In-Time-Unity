@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Pictures : Interactable
 {
-
+    public InteractableManager InteractableManager;
     public override void Interact()
     {
-        Debug.Log("Interacted with pictures");
+        InteractableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
+        InteractableManager.Activate("Pictures");
+
     }
 }
