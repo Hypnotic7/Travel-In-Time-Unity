@@ -13,8 +13,9 @@ namespace Assets.Scripts
         // Use this for initialization
         void Start()
         {
-            currentTime = "Past_Time_Test";
 
+            currentTime = "Past_Time_Test";
+            
         }
 
         // Update is called once per frame
@@ -26,13 +27,11 @@ namespace Assets.Scripts
         void OnDestroy()
         {
             Debug.Log("Game Status was destroyed");
-
             PlayerPrefs.SetString("CurrentTime", currentTime);
         }
 
         public void LoadScene(string sceneName)
         {
-
             SceneManager.LoadScene(sceneName);
         }
     }

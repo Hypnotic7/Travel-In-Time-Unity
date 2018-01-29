@@ -84,6 +84,7 @@ namespace Assets.Scripts.Items
                 {
                     gm.currentTime = "Present_Time_Test";
                     gm.LoadScene(PlayerPrefs.GetString("CurrentTime"));
+
                 }
                 else if(PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
                 {

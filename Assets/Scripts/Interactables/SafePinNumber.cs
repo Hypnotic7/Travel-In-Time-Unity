@@ -10,6 +10,7 @@ namespace Assets.Scripts.Interactables
 
         public int[] PinNumbers { get; set; }
         public const string PinNumber = "1468";
+        public string SafeCode;
 
 
         public SafePinNumber()
@@ -44,6 +45,7 @@ namespace Assets.Scripts.Interactables
             {
                 pinNumbersString += PinNumbers[i];
             }
+            SafeCode = pinNumbersString;
 
             if (pinNumbersString.Equals(PinNumber))
             {
@@ -51,6 +53,11 @@ namespace Assets.Scripts.Interactables
             }
 
             return false;
+        }
+
+        public int LengthOfCurrentString()
+        {
+            return SafeCode.Length;
         }
     }
 
