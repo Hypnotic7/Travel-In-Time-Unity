@@ -23,6 +23,7 @@ namespace Assets.Scripts.Interactables.Pictures
         private bool isCoolingDown = false;
         private float timeStamp;
         private const int coolDownPeriodInSeconds = 4;
+        public string FinalComination { get; set; }
 
 
         void Start()
@@ -36,7 +37,6 @@ namespace Assets.Scripts.Interactables.Pictures
             if (Counter == 2)
             {
                 Counter = 0;
-                var finalCombination = "120";
                 string combination = "";
 
                 for (int i = 0; i < 3; i++)
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Interactables.Pictures
 
                 }
                 Debug.Log("Combination:" + combination);
-                if (finalCombination.Equals(combination))
+                if (FinalComination.Equals(combination))
                 {
                     Debug.Log("Combination Correct");
 
@@ -58,6 +58,13 @@ namespace Assets.Scripts.Interactables.Pictures
                     this.PicturesText.text = "Correct Order";
                     timeStamp = Time.time + coolDownPeriodInSeconds;
                     isCoolingDown = true;
+
+                    var inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+                    if (!inv.items.Exists(f => f.ID == 3))
+                    {
+                        inv.AddItem(3);
+                    }
+                    
                 }
                 else
                 {
@@ -101,7 +108,8 @@ namespace Assets.Scripts.Interactables.Pictures
             PictureImages = new List<GameObject>();
             PictureSlots = new List<PictureSlot>();
             Pictures = new List<Picture>();
-           
+            Counter = 0;
+
         }
 
         public void Instantiate()
@@ -123,6 +131,7 @@ namespace Assets.Scripts.Interactables.Pictures
                 Pictures.Add(new Picture() { ID = i, Name = "Picture" + (i + 1) });
                 PictureImages[i].transform.GetComponent<Image>().sprite =
                     Resources.Load<Sprite>("CanvasWallArt/Picture" + (i + 1));
+                FinalComination = GameObject.Find("Pictures").GetComponent<PicturesOnTheWall>().FinalCombination;
 
             }
         }
