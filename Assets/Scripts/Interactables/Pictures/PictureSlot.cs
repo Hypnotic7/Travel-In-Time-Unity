@@ -46,10 +46,8 @@ namespace Assets.Scripts.Interactables.Pictures
                 droppedImage.transform.position = this.transform.position;
                 picturesManager.ImageSlots[ID].transform.GetChild(0).GetComponent<PictureImage>().SlotNumber =
                     droppedImage.SlotNumber;
-                if (picturesManager.PictureSlots[droppedImage.SlotNumber] != null)
-                {
-                    picturesManager.PictureSlots[droppedImage.SlotNumber].ID = picture.GetComponent<PictureImage>().SlotNumber;
-                }
+                
+                picturesManager.PictureSlots[droppedImage.SlotNumber].ID = picture.GetComponent<PictureImage>().SlotNumber;
                 picturesManager.Pictures[ID].ID = droppedImage.SlotNumber;
                 picturesManager.PictureSlots[droppedImage.SlotNumber] = picture.GetComponent<PictureSlot>();
                 this.ID = droppedImage.SlotNumber;

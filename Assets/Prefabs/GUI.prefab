@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224110730153657472}
   - component: {fileID: 114971505267715956}
+  - component: {fileID: 114118149068751418}
   - component: {fileID: 114671359935093720}
   - component: {fileID: 114799255591198268}
   - component: {fileID: 114329926612354844}
@@ -163,6 +164,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 669e7d8d51b8a704ca338745499657da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114118149068751418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1911000418081910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114131440295315736
@@ -204,11 +216,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionWindows:
-  - {fileID: 1734284302495734, guid: 60072b4cecece1647b203d43a4b0ae4a, type: 2}
-  - {fileID: 1723638374827150, guid: f57097e49ca388a4a8ac1d4ffb740497, type: 2}
+  - {fileID: 1420849651478624, guid: bb79333841fd3b844b48bbf80f5ac434, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   safeInteraction: {fileID: 0}
-  picturesInteraction: {fileID: 0}
 --- !u!114 &114253720291216762
 MonoBehaviour:
   m_ObjectHideFlags: 1

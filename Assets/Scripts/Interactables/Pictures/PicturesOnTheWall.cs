@@ -9,14 +9,12 @@ namespace Assets.Scripts.Interactables.Pictures
     public class PicturesOnTheWall : Interactable
     {
         public InteractableManager InteractableManager;
-        public string FinalCombination;
         void Start()
         {
-           
+            InteractableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
         }
         public override void Interact()
         {
-            InteractableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
             InteractableManager.Activate("Pictures");
         }
     }

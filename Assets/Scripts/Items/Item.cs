@@ -12,10 +12,8 @@ namespace Assets.Scripts.Items
         public string Slug { get; set; }
         public string Draggable { get; set; }
         public bool ChangedScenes { get; set; }
-        public bool IsCoolingdown { get; set; }
-        public int CooldownInSeconds { get; set; }
 
-        public Item(int id, string title, int value, bool stackable, string slug,int cooldownInSeconds)
+        public Item(int id, string title, int value, bool stackable, string slug)
         {
             this.ID = id;
             this.Title = title;
@@ -23,7 +21,6 @@ namespace Assets.Scripts.Items
             this.Stackable = stackable;
             this.Slug = slug;
             this.Sprite = Resources.Load<Sprite>("Sprites/Items/" + slug) as Sprite;
-            CooldownInSeconds = cooldownInSeconds;
         }
 
         public Item()

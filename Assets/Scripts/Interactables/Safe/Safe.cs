@@ -23,6 +23,9 @@ namespace Interactables.Safe
         void Start()
         {
             PinNumbersObjects = new List<Transform>();
+            this.SafePinNumber = new SafePinNumber();
+            SafeDoors = GameObject.Find("Safe").transform.GetChild(0).GetComponent<Transform>();
+            SafeText = GameObject.Find("SafeText").transform.GetComponent<Text>();
         }
 
         public override void Interact()
@@ -31,22 +34,16 @@ namespace Interactables.Safe
             {
                 InteractableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
                 InteractableManager.Activate("Safe");
-                SafePinNumber = GameObject.Find("Code").GetComponent<SafePinNumber>();
-                SafeDoors = GameObject.Find("Safe").transform.GetChild(0).GetComponent<Transform>();
                 SafePinNumberObj = GameObject.Find("Code");
-
                 if (PinNumbersObjects.Count > 1)
                 {
                     PinNumbersObjects = new List<Transform>();
                 }
-                if (PinNumbersObjects != null)
+
+                for (int i = 0; i < 4; i++)
                 {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        PinNumbersObjects.Add(SafePinNumberObj.transform.GetChild(i));
-                    }
+                    PinNumbersObjects.Add(SafePinNumberObj.transform.GetChild(i));
                 }
-                
             }
             else
             {

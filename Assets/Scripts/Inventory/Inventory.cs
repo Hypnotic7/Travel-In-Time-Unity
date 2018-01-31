@@ -20,10 +20,10 @@ public class Inventory : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-        
 	    database = GetComponent<ItemDatabase>();
         
 	    inventoryPanel = GameObject.Find("Inventory");
+	    
 
         for (int i = 0; i < slotAmount; i++)
 	    {
@@ -32,10 +32,8 @@ public class Inventory : MonoBehaviour
 	        slots[i].GetComponent<Slot>().id = i;
             slots[i].transform.SetParent(inventoryPanel.transform,false);
 	    }
-
-
         AddItem(0);
-    }
+	}
 
     public void AddItem(int id)
     {

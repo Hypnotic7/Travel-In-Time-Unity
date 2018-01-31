@@ -5,7 +5,6 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.Items
 {
@@ -20,7 +19,6 @@ namespace Assets.Scripts.Items
         private Tooltip tooltip;
         public string levelToLoad;
         public bool ChangedScenes;
-        private float timeStamp;
 
         void Start()
         {
@@ -68,62 +66,38 @@ namespace Assets.Scripts.Items
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            
 
-            if (!item.IsCoolingdown)
+            if (item.ID == 0)
             {
-                if (item.ID == 0)
+                GameObject go = GameObject.Find("GameManager");
+                if (go == null)
                 {
-                    GameObject go = GameObject.Find("GameManager");
-                    if (go == null)
-                    {
-                        Debug.LogError("Failed to find an object named 'GameManager'");
-                        this.enabled = false;
-                        return;
-                    }
-
-                    GameManager gm = go.GetComponent<GameManager>();
-
-                    if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test")
-                    {
-                        item.IsCoolingdown = true;
-                        timeStamp = Time.time + item.CooldownInSeconds;
-                        transform.GetComponent<Image>().color = Color.white;
-                        inv.slots[item.ID].GetComponent<Image>().color = Color.yellow;
-                        gm.currentTime = "Present_Time_Test";
-                        gm.LoadScene(PlayerPrefs.GetString("CurrentTime"));
-                        
-
-                    }
-                    else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
-                    {
-                        item.IsCoolingdown = true;
-                        timeStamp = Time.time + item.CooldownInSeconds;
-                        transform.GetComponent<Image>().color = Color.white;
-                        inv.slots[item.ID].GetComponent<Image>().color = Color.yellow;
-                        gm.currentTime = "Past_Time_Test";
-                        gm.LoadScene(PlayerPrefs.GetString("CurrentTime"));
-                    }
+                    Debug.LogError("Failed to find an object named 'GameManager'");
+                    this.enabled = false;
+                    return;
                 }
-            }
 
+                GameManager gm = go.GetComponent<GameManager>();
 
-            }
-
-        void Update()
-        {
-            if (item.IsCoolingdown)
-            {
-                if (timeStamp <= Time.time)
+                if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test")
                 {
-                    transform.GetComponent<Image>().color = Color.white;
-                    inv.slots[item.ID].GetComponent<Image>().color = Color.white;
-                    item.IsCoolingdown = false;
+                    gm.currentTime = "Present_Time_Test";
+                    gm.LoadScene(PlayerPrefs.GetString("CurrentTime"));
+
                 }
+                else if(PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
+                {
+                    gm.currentTime = "Past_Time_Test";
+                    gm.LoadScene(PlayerPrefs.GetString("CurrentTime"));
+                }
+                
+
+
             }
-        }
             
 
 
         }
     }
-
+}
