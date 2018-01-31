@@ -4,20 +4,39 @@
     "title": "Time Watch",
     "value": 6,
     "stackable": false,
-    "slug": "pocket_watch"
+    "slug": "pocket_watch",
+    "cooldown_in_seconds": 5
   },
   {
     "id": 1,
     "title": "Great Stick",
     "value": 400,
     "stackable": false,
-    "slug": "great_stick"
+    "slug": "great_stick",
+    "cooldown_in_seconds": 0
   },
   {
     "id": 2,
     "title": "Key 3030",
     "value": 100,
     "stackable": true,
-    "slug": "key_room_1"
+    "slug": "key_room_1",
+    "cooldown_in_seconds": 0
+  },
+  {
+    "id": 3,
+    "title": "Key Chest 1",
+    "value": 100,
+    "stackable": true,
+    "slug": "key_chest_1",
+    "cooldown_in_seconds": 0
+  },
+  {
+    "id": 4,
+    "title": "Piece of Map",
+    "value": 100,
+    "stackable": true,
+    "slug": "piece_of_map_1",
+    "cooldown_in_seconds": 0
   }
 ]

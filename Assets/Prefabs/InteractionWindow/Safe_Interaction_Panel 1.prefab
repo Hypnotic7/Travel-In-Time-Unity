@@ -334,7 +334,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224678641671884248}
-  - component: {fileID: 114288018419561302}
+  - component: {fileID: 114992717273315346}
   m_Layer: 5
   m_Name: Code
   m_TagString: Untagged
@@ -947,18 +947,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91a0fd94c43dc943b62b5656aeaa60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114288018419561302
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1555517099234394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0addf5ff3be45ed418b66ea6aab1846f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SafeCode: 
 --- !u!114 &114315948359350722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1868,6 +1856,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114992717273315346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1555517099234394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0addf5ff3be45ed418b66ea6aab1846f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SafeCode: 1468
 --- !u!222 &222007271827299988
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 222475757817351714}
   - component: {fileID: 114519771054212048}
   - component: {fileID: 225194579805603078}
-  - component: {fileID: 114630332444113478}
   - component: {fileID: 114507139323502060}
   m_Layer: 5
   m_Name: PicturesPanel
@@ -425,17 +424,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Drag and Drop Pictures in the right order with only two moves
---- !u!114 &114630332444113478
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1070562308028112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114661999935728986
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -30,17 +30,24 @@ public class InteractableManager : MonoBehaviour {
     {
         if (interactableString == "Safe" && safeInteraction.Equals(null))
         {
+            if (interactionWindow != null)
+            {
                 safeInteraction = Instantiate(interactionWindows[0]);
                 safeInteraction.transform.SetParent(interactionWindow.transform, false);
+
+            }
+                
         }
         else if (interactableString == "Pictures" && picturesInteraction.Equals(null))
         {
-            picturesInteraction = Instantiate(interactionWindows[1]);
-            picturesInteraction.transform.SetParent(interactionWindow.transform, false);
+            if (interactionWindow != null)
+            {
+                picturesInteraction = Instantiate(interactionWindows[1]);
+                picturesInteraction.transform.SetParent(interactionWindow.transform, false);
+            }
         }
 
-        interactionWindow.SetActive(true);
-
+        if (interactionWindow != null) interactionWindow.SetActive(true);
     }
 
    

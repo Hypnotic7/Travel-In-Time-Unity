@@ -21,14 +21,22 @@ public class DisableInteractionWindow : MonoBehaviour, IPointerClickHandler {
     public void OnPointerClick(PointerEventData eventData)
     {
         var interactableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
-        Destroy(interactableManager.safeInteraction);
-        Destroy(interactableManager.picturesInteraction);
-        interactableManager.interactionWindow.SetActive(false);
-        var safe = GameObject.Find("Safe").GetComponent<Safe>();
-        var pictures = GameObject.Find("PicturesPanel").GetComponent<PicturesManager>();
-        pictures.Clean();
-        safe.Clean();
+        if (interactableManager.safeInteraction != null)
+        {
+            Destroy(interactableManager.safeInteraction);
+            var safe = GameObject.Find("Safe").GetComponent<Safe>();
+            safe.Clean();
+        }
+        else if (interactableManager.picturesInteraction != null)
+        {
+            Destroy(interactableManager.picturesInteraction);
+            
+
+            var pictures = GameObject.Find("PicturesPanel").GetComponent<PicturesManager>();
+            pictures.Clean();
+        }
         
-       
+        interactableManager.interactionWindow.SetActive(false);
+
     }
 }
