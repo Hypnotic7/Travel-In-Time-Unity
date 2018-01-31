@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.Interactables;
+using Assets.Scripts.Interactables.Pictures;
+using Interactables.Safe;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,10 +21,14 @@ public class DisableInteractionWindow : MonoBehaviour, IPointerClickHandler {
     public void OnPointerClick(PointerEventData eventData)
     {
         var interactableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
+        Destroy(interactableManager.safeInteraction);
+        Destroy(interactableManager.picturesInteraction);
         interactableManager.interactionWindow.SetActive(false);
         var safe = GameObject.Find("Safe").GetComponent<Safe>();
+        var pictures = GameObject.Find("PicturesPanel").GetComponent<PicturesManager>();
+        pictures.Clean();
         safe.Clean();
-        Destroy(interactableManager.safeInteraction);
+        
        
     }
 }

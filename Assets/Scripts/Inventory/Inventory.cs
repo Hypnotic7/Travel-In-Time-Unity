@@ -33,8 +33,6 @@ public class Inventory : MonoBehaviour
             slots[i].transform.SetParent(inventoryPanel.transform,false);
 	    }
         AddItem(0);
-        AddItem(1);
-
 	}
 
     public void AddItem(int id)

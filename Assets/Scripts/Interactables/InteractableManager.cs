@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.Interactables;
 using UnityEngine;
 
 public class InteractableManager : MonoBehaviour {
@@ -29,19 +28,19 @@ public class InteractableManager : MonoBehaviour {
 
     public void Activate(string interactableString)
     {
-        if (interactableString == "Safe")
+        if (interactableString == "Safe" && safeInteraction.Equals(null))
         {
                 safeInteraction = Instantiate(interactionWindows[0]);
                 safeInteraction.transform.SetParent(interactionWindow.transform, false);
-                interactionWindow.SetActive(true);
         }
-        else if (interactableString == "Pictures")
+        else if (interactableString == "Pictures" && picturesInteraction.Equals(null))
         {
             picturesInteraction = Instantiate(interactionWindows[1]);
             picturesInteraction.transform.SetParent(interactionWindow.transform, false);
-            interactionWindow.SetActive(true);
         }
-        
+
+        interactionWindow.SetActive(true);
+
     }
 
    

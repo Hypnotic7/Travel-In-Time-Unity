@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &173666
 GameObject:
@@ -27,9 +27,11 @@ GameObject:
   - component: {fileID: 421908}
   - component: {fileID: 3326022}
   - component: {fileID: 2353284}
+  - component: {fileID: 65910951938860856}
+  - component: {fileID: 114271388091183994}
   m_Layer: 0
-  m_Name: Door
-  m_TagString: Untagged
+  m_Name: DoorRoom2
+  m_TagString: Interactable Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,14 +42,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 158178}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 22.76, y: 0.634, z: 7.66782}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 421908}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!4 &421908
 Transform:
   m_ObjectHideFlags: 1
@@ -55,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.95898026, y: 0, z: 0}
+  m_LocalPosition: {x: 0.96, y: 0, z: 0.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 410528}
@@ -150,3 +152,29 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 158178}
   m_IsPrefabParent: 1
+--- !u!65 &65910951938860856
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173666}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9256873, y: 4.00868, z: 1.65}
+  m_Center: {x: -0.96027744, y: 2.00434, z: -0.0000038146973}
+--- !u!114 &114271388091183994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19d9089079bdac429fc103959d81a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAgent: {fileID: 0}
+  OpenClose: 0
+  inTrigger: 0
