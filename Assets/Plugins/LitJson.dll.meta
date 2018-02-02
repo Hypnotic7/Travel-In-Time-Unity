@@ -60,7 +60,7 @@ PluginImporter:
       second:
         enabled: 0
         settings:
-          CPU: None
+          CPU: AnyCPU
     data:
       first:
         Standalone: Linux
@@ -74,7 +74,7 @@ PluginImporter:
       second:
         enabled: 0
         settings:
-          CPU: None
+          CPU: x86_64
     data:
       first:
         Standalone: LinuxUniversal
@@ -95,7 +95,7 @@ PluginImporter:
       second:
         enabled: 0
         settings:
-          CPU: None
+          CPU: AnyCPU
     data:
       first:
         Standalone: OSXUniversal
@@ -116,7 +116,7 @@ PluginImporter:
       second:
         enabled: 0
         settings:
-          CPU: None
+          CPU: AnyCPU
     data:
       first:
         Windows Store Apps: WindowsStoreApps

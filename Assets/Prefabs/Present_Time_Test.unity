@@ -47,7 +47,7 @@ LightmapSettings:
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
-    m_IndirectOutputScale: 1.444
+    m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_TemporalCoherenceThreshold: 1
     m_EnvironmentLightingMode: 0
@@ -64,8 +64,7 @@ LightmapSettings:
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
     m_Padding: 2
-    m_LightmapParameters: {fileID: 15200, guid: 0000000000000000f000000000000000,
-      type: 0}
+    m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
     m_FinalGather: 0
@@ -87,7 +86,7 @@ LightmapSettings:
     m_PVRFilteringAtrousColorSigma: 1
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
-  m_LightingDataAsset: {fileID: 112000324, guid: 0364d02b835795641b0b1dfbe4a42d56,
+  m_LightingDataAsset: {fileID: 112000322, guid: 0364d02b835795641b0b1dfbe4a42d56,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -139,7 +138,7 @@ Transform:
   m_Children:
   - {fileID: 1016695862}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90.57898, y: -82.846985, z: -0.0009765625}
 --- !u!65 &306286964
 BoxCollider:
@@ -165,11 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAgent: {fileID: 0}
---- !u!4 &1016695862 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: 88fac10bf53aa1346a7c604f458fcec1, type: 3}
-  m_PrefabInternal: {fileID: 1682378239}
---- !u!1001 &1288267323
+--- !u!1001 &831777942
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -206,11 +201,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4129054603936632, guid: 6ab3fb26dea7a5d4b8a3a51ca42c1373, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ab3fb26dea7a5d4b8a3a51ca42c1373, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1016695862 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 88fac10bf53aa1346a7c604f458fcec1, type: 3}
+  m_PrefabInternal: {fileID: 1682378239}
 --- !u!1001 &1682378239
 Prefab:
   m_ObjectHideFlags: 0

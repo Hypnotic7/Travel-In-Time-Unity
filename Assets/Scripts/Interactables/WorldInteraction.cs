@@ -26,7 +26,7 @@ public class WorldInteraction : MonoBehaviour
         if (Physics.Raycast(interactionRay,out interactionInfo, Mathf.Infinity))
         {
             GameObject interactedObject = interactionInfo.collider.gameObject;
-            if (interactedObject.tag == "Interactable Object")
+            if (interactedObject.CompareTag("Interactable Object"))
             {
                 interactedObject.GetComponent<Interactable>().MoveToInteraction(playerAgent);
             }

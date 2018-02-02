@@ -28,7 +28,9 @@ public class InteractableManager : MonoBehaviour {
 
     public void Activate(string interactableString)
     {
-        if (interactableString == "Safe" && safeInteraction.Equals(null))
+        if (interactionWindow != null) interactionWindow.SetActive(true);
+
+        if (interactableString == "Safe" && !safeInteraction.Equals(null))
         {
             if (interactionWindow != null)
             {
@@ -38,7 +40,7 @@ public class InteractableManager : MonoBehaviour {
             }
                 
         }
-        else if (interactableString == "Pictures" && picturesInteraction.Equals(null))
+        else if (interactableString == "Pictures" && !picturesInteraction.Equals(null))
         {
             if (interactionWindow != null)
             {
@@ -47,7 +49,6 @@ public class InteractableManager : MonoBehaviour {
             }
         }
 
-        if (interactionWindow != null) interactionWindow.SetActive(true);
     }
 
    

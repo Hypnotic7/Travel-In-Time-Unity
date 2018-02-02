@@ -6,7 +6,7 @@ namespace Interactables.Safe
     {
 
         public int[] PinNumbers { get; set; }
-        public const string PinNumber = "1468";
+        public const string PinNumber = "1469";
         public string SafeCode;
 
 

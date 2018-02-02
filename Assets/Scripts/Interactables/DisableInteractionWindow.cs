@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using Assets.Scripts.Interactables.Pictures;
 using Interactables.Safe;
 using UnityEngine;
@@ -21,22 +22,28 @@ public class DisableInteractionWindow : MonoBehaviour, IPointerClickHandler {
     public void OnPointerClick(PointerEventData eventData)
     {
         var interactableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
-        if (interactableManager.safeInteraction != null)
+       
+        if (GameObject.Find("Pictures_Interaction_Panel(Clone)") != null)
         {
-            Destroy(interactableManager.safeInteraction);
-            var safe = GameObject.Find("Safe").GetComponent<Safe>();
-            safe.Clean();
-        }
-        else if (interactableManager.picturesInteraction != null)
-        {
-            Destroy(interactableManager.picturesInteraction);
-            
-
+            Destroy(GameObject.Find("Pictures_Interaction_Panel(Clone)"));
             var pictures = GameObject.Find("PicturesPanel").GetComponent<PicturesManager>();
             pictures.Clean();
+            interactableManager.interactionWindow.SetActive(false);
+
         }
+
+        else if (GameObject.Find("Safe_Interaction_Panel(Clone)") != null)
+        {
+            
+                Destroy(GameObject.Find("Safe_Interaction_Panel(Clone)"));
+            var safe = GameObject.Find("Safe").GetComponent<Safe>();
+                safe.Clean();
+                interactableManager.interactionWindow.SetActive(false);
+            
+           
+        }
+
         
-        interactableManager.interactionWindow.SetActive(false);
 
     }
 }

@@ -129,11 +129,28 @@ namespace Assets.Scripts.Interactables.Pictures
                 ImageSlots[i].transform.GetChild(0).GetComponent<PictureImage>().Picture =
                     new Picture() { ID = i, Name = "Picture" + i };
                 Pictures.Add(new Picture() { ID = i, Name = "Picture" + (i + 1) });
+
                 PictureImages[i].transform.GetComponent<Image>().sprite =
                     Resources.Load<Sprite>("CanvasWallArt/Picture" + (i + 1));
                 FinalComination = GameObject.Find("Pictures").GetComponent<PicturesOnTheWall>().FinalCombination;
 
             }
+            if (GameObject.Find("GameManager").GetComponent<GameManager>().currentTime == "Past_Time_Test")
+            {
+                var counter = 3;
+                for (var i = 0; i < 3; i++)
+                {
+                    
+                        PictureImages[i].transform.GetComponent<Image>().sprite =
+                            Resources.Load<Sprite>("CanvasWallArt/Picture" + (counter));
+                    counter--;
+                }
+                   
+                
+            }
+            
+
+
         }
 
     }

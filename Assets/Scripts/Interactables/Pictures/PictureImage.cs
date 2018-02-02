@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,6 +14,7 @@ namespace Assets.Scripts.Interactables.Pictures
         public Picture Picture { get; set; }
         private PicturesManager _picturesManager;
         public int SlotNumber;
+        private int currentSlot;
 
         void Start()
         {
@@ -22,6 +24,7 @@ namespace Assets.Scripts.Interactables.Pictures
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            currentSlot = SlotNumber;
             if (Picture.ID != -1)
             {
                 _offset = eventData.position - new Vector2(this.transform.position.x, this.transform.position.y);
@@ -45,7 +48,11 @@ namespace Assets.Scripts.Interactables.Pictures
             this.transform.SetParent(_picturesManager.ImageSlots[SlotNumber].transform);
             this.transform.position = _picturesManager.ImageSlots[SlotNumber].transform.position;
             GetComponent<CanvasGroup>().blocksRaycasts = true;
-            _picturesManager.Counter++;
+            if (!currentSlot.Equals(SlotNumber))
+            {
+                _picturesManager.Counter++;
+            }
+            
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -53,11 +60,5 @@ namespace Assets.Scripts.Interactables.Pictures
             Debug.Log("Picture ID: " + Picture.ID);
             Debug.Log("Picture Slot ID: " + _picturesManager.ImageSlots[SlotNumber].transform.GetComponent<PictureSlot>().ID);
         }
- 
-               
-
-       
-
-        
     }
 }

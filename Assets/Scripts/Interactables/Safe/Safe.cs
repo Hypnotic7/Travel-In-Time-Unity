@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 namespace Interactables.Safe
@@ -15,7 +16,7 @@ namespace Interactables.Safe
         public Text SafeText;
         private float timeStamp;
         private bool IsCoolingDown = false;
-        private const int coolDownPeriodInSeconds = 4;
+        private const int coolDownPeriodInSeconds = 3;
 
 
 
@@ -30,10 +31,19 @@ namespace Interactables.Safe
             if (!IsSafeOpen)
             {
                 InteractableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
+                InteractableManager.safeInteraction = this.gameObject;
+                if (InteractableManager == null) return;
+                playerAgent = GameObject.Find("Character(Clone)").GetComponent<NavMeshAgent>();
                 InteractableManager.Activate("Safe");
                 SafePinNumber = GameObject.Find("Code").GetComponent<SafePinNumber>();
                 SafeDoors = GameObject.Find("Safe").transform.GetChild(0).GetComponent<Transform>();
                 SafePinNumberObj = GameObject.Find("Code");
+
+                
+                if (SafePinNumber == null) return;
+                if (SafeDoors == null) return;
+                if (SafePinNumberObj == null) return;
+
 
                 if (PinNumbersObjects.Count > 1)
                 {

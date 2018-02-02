@@ -82,27 +82,27 @@ namespace Assets.Scripts.Items
                     }
 
                     GameManager gm = go.GetComponent<GameManager>();
-
-                    if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test")
-                    {
-                        item.IsCoolingdown = true;
-                        timeStamp = Time.time + item.CooldownInSeconds;
-                        transform.GetComponent<Image>().color = Color.white;
-                        inv.slots[item.ID].GetComponent<Image>().color = Color.yellow;
-                        gm.currentTime = "Present_Time_Test";
-                        gm.LoadScene(PlayerPrefs.GetString("CurrentTime"));
-                        
-
-                    }
-                    else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
+                    if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test" || gm.currentTime == "Present_Time")
                     {
                         item.IsCoolingdown = true;
                         timeStamp = Time.time + item.CooldownInSeconds;
                         transform.GetComponent<Image>().color = Color.white;
                         inv.slots[item.ID].GetComponent<Image>().color = Color.yellow;
                         gm.currentTime = "Past_Time_Test";
-                        gm.LoadScene(PlayerPrefs.GetString("CurrentTime"));
+                        gm.LoadScene(gm.currentTime);
                     }
+                    else if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" || gm.currentTime == "Past_Time")
+                    {
+                        item.IsCoolingdown = true;
+                        timeStamp = Time.time + item.CooldownInSeconds;
+                        transform.GetComponent<Image>().color = Color.white;
+                        inv.slots[item.ID].GetComponent<Image>().color = Color.yellow;
+                        gm.currentTime = "Present_Time_Test";
+                        gm.LoadScene(gm.currentTime);
+                        
+
+                    }
+                    
                 }
             }
 

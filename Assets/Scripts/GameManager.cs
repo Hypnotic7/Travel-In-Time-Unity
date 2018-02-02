@@ -9,7 +9,7 @@ namespace Assets.Scripts
 {
     public class GameManager : MonoBehaviour
     {
-        public string currentTime { get; set; }
+        public string currentTime;
         public GameObject GUI;
         public GameObject Character;
         public GameObject MainCamera;
@@ -17,10 +17,11 @@ namespace Assets.Scripts
 
 
 
+
         // Use this for initialization
         void Start()
         {
-            currentTime = "Present_Time_Test";
+            //currentTime = "Past_Time_Test";
 
             if (GameObject.Find("GUI(Clone)") == null)
             {
