@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
+using Assets.Scripts.Interactables.Piano;
 using Assets.Scripts.Interactables.Pictures;
 using Interactables.Safe;
 using UnityEngine;
@@ -42,8 +43,18 @@ public class DisableInteractionWindow : MonoBehaviour, IPointerClickHandler {
             
            
         }
+        else if (GameObject.Find("Piano_Interaction_Panel(Clone)") != null)
+        {
 
-        
+            Destroy(GameObject.Find("Piano_Interaction_Panel(Clone)"));
+            var piano = GameObject.Find("Piano").GetComponent<Piano>();
+            piano.Clean();
+            interactableManager.interactionWindow.SetActive(false);
+
+
+        }
+
+
 
     }
 }

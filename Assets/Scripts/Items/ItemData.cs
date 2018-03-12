@@ -68,11 +68,14 @@ namespace Assets.Scripts.Items
 
         public void OnPointerClick(PointerEventData eventData)
         {
+           
 
             if (!item.IsCoolingdown)
             {
+            
                 if (item.ID == 0)
                 {
+                    
                     GameObject go = GameObject.Find("GameManager");
                     if (go == null)
                     {
@@ -81,9 +84,15 @@ namespace Assets.Scripts.Items
                         return;
                     }
 
+                    if (PlayerPrefs.GetString("CurrentTime").Equals(string.Empty))
+                    {
+                        PlayerPrefs.SetString("CurrentTime","Past_Time_Test");
+                    }
+
                     GameManager gm = go.GetComponent<GameManager>();
                     if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test" || gm.currentTime == "Present_Time")
                     {
+                       
                         item.IsCoolingdown = true;
                         timeStamp = Time.time + item.CooldownInSeconds;
                         transform.GetComponent<Image>().color = Color.white;
@@ -93,6 +102,7 @@ namespace Assets.Scripts.Items
                     }
                     else if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" || gm.currentTime == "Past_Time")
                     {
+                       
                         item.IsCoolingdown = true;
                         timeStamp = Time.time + item.CooldownInSeconds;
                         transform.GetComponent<Image>().color = Color.white;

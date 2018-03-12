@@ -19,8 +19,6 @@ namespace Interactables.Safe
         private const int coolDownPeriodInSeconds = 3;
 
 
-
-
         void Start()
         {
             PinNumbersObjects = new List<Transform>();
@@ -34,6 +32,8 @@ namespace Interactables.Safe
                 InteractableManager.safeInteraction = this.gameObject;
                 if (InteractableManager == null) return;
                 playerAgent = GameObject.Find("Character(Clone)").GetComponent<NavMeshAgent>();
+
+                if(GameObject.Find("Safe"))
                 InteractableManager.Activate("Safe");
                 SafePinNumber = GameObject.Find("Code").GetComponent<SafePinNumber>();
                 SafeDoors = GameObject.Find("Safe").transform.GetChild(0).GetComponent<Transform>();
@@ -112,7 +112,6 @@ namespace Interactables.Safe
 
                             safeText.text = "Incorrect Pin Number";
                         }
-                        
                     }
                     
                     break;

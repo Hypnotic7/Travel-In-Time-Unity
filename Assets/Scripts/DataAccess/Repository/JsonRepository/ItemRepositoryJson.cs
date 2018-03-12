@@ -23,7 +23,7 @@ namespace Assets.Scripts.DataAccess.Repository.JsonRepository
             try
             {
                 var itemData = OpenFileAndReadData(TravelInTimeConstants.ItemsDatabase).GetCollection();
-                for (int i = 0; i < itemData.Count; i++)
+                for (var i = 0; i < itemData.Count; i++)
                 {
                     ItemsDatabase.Add(new ItemEntity((int) itemData[i]["id"], itemData[i]["title"].ToString(),
                         (int) itemData[i]["value"], (bool) itemData[i]["stackable"],

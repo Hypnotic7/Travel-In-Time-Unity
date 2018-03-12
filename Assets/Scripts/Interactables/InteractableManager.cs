@@ -13,6 +13,7 @@ public class InteractableManager : MonoBehaviour {
     public List<GameObject> interactionWindows = new List<GameObject>(3);
     public GameObject safeInteraction;
     public GameObject picturesInteraction;
+    public GameObject pianoInteraction;
 
 	// Use this for initialization
 	void Start ()
@@ -32,21 +33,29 @@ public class InteractableManager : MonoBehaviour {
 
         if (interactableString == "Safe" && !safeInteraction.Equals(null))
         {
-            if (interactionWindow != null)
+            if (!GameObject.Find("Safe_Interaction_Panel(Clone)"))
             {
                 safeInteraction = Instantiate(interactionWindows[0]);
                 safeInteraction.transform.SetParent(interactionWindow.transform, false);
 
             }
-                
         }
         else if (interactableString == "Pictures" && !picturesInteraction.Equals(null))
         {
-            if (interactionWindow != null)
+            if (!GameObject.Find("Pictures_Interaction_Panel(Clone)"))
             {
                 picturesInteraction = Instantiate(interactionWindows[1]);
                 picturesInteraction.transform.SetParent(interactionWindow.transform, false);
             }
+        }
+        else if (interactableString == "Piano" && !pianoInteraction.Equals(null))
+        {
+            if (!GameObject.Find("Piano_Interaction_Panel(Clone)"))
+            {
+                pianoInteraction = Instantiate(interactionWindows[2]);
+                pianoInteraction.transform.SetParent(interactionWindow.transform,false);
+            }
+            
         }
 
     }

@@ -223,12 +223,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4264748562379544}
+  - component: {fileID: 114918555199094882}
+  - component: {fileID: 65551637058669556}
   m_Layer: 0
   m_Name: Piano
-  m_TagString: Untagged
+  m_TagString: Interactable Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1057246193866466
 GameObject:
@@ -3229,7 +3231,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1769129158767274
 GameObject:
@@ -16134,6 +16136,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65551637058669556
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054028712712412}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.92, y: 8.03, z: 10.21}
+  m_Center: {x: 0.84, y: 3.84, z: 0.83}
 --- !u!65 &65558492302690670
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -18818,3 +18832,18 @@ MonoBehaviour:
   OpenClose: 0
   IsTriggered: 0
   counter: 0
+--- !u!114 &114918555199094882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054028712712412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a141fdc0e96ffaf47b770b68504cefbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAgent: {fileID: 0}
+  MusicClip: {fileID: 0}
+  MusicSource: {fileID: 0}
+  isPlaying: 0

@@ -38,5 +38,13 @@
     "stackable": true,
     "slug": "piece_of_map_1",
     "cooldown_in_seconds": 0
+  },
+  {
+    "id": 5,
+    "title": "Scroll",
+    "value": 1000,
+    "stackable": false,
+    "slug": "scroll_elixir",
+    "cooldown_in_seconds": 0 
   }
 ]

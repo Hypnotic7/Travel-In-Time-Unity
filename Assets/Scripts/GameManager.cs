@@ -14,8 +14,7 @@ namespace Assets.Scripts
         public GameObject Character;
         public GameObject MainCamera;
         public GameObject EventSystem;
-
-
+        public GameObject AudioSystem;
 
 
         // Use this for initialization
@@ -48,9 +47,10 @@ namespace Assets.Scripts
                 Instantiate(EventSystem);
             }
 
-
-
-
+            if (GameObject.Find("Audio(Clone)") == null)
+            {
+                Instantiate(AudioSystem);
+            }
         }
 
         // Update is called once per frame
@@ -73,6 +73,7 @@ namespace Assets.Scripts
             DontDestroyOnLoad(GameObject.Find("Main Camera(Clone)"));
             DontDestroyOnLoad(GameObject.Find("Character(Clone)"));
             DontDestroyOnLoad(GameObject.Find("EventSystem(Clone)"));
+            DontDestroyOnLoad(GameObject.Find("Audio(Clone)"));
         }
     }
 }
