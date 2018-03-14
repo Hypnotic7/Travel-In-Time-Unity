@@ -126,12 +126,34 @@ namespace Assets.Scripts.Interactables.Pictures
                 PictureSlots[i].ID = i;
                 ImageSlots[i].transform.GetChild(0).GetComponent<PictureImage>().SlotNumber = i;
                 Debug.Log("Manager ID: " + ImageSlots[i].transform.GetChild(0).GetComponent<PictureImage>().SlotNumber);
-                ImageSlots[i].transform.GetChild(0).GetComponent<PictureImage>().Picture =
-                    new Picture() { ID = i, Name = "Picture" + i };
-                Pictures.Add(new Picture() { ID = i, Name = "Picture" + (i + 1) });
 
-                PictureImages[i].transform.GetComponent<Image>().sprite =
-                    Resources.Load<Sprite>("CanvasWallArt/Picture" + (i + 1));
+                if (i == 0)
+                {
+                    ImageSlots[i].transform.GetChild(0).GetComponent<PictureImage>().Picture =
+                        new Picture() { ID = i, Name = "Picture" + i };
+                    Pictures.Add(new Picture() { ID = i, Name = "Picture" + (i + 1) });
+
+                    PictureImages[i].transform.GetComponent<Image>().sprite =
+                        Resources.Load<Sprite>("CanvasWallArt/Picture" + (i + 1));
+                }else if (i == 1)
+                {
+                    ImageSlots[i].transform.GetChild(0).GetComponent<PictureImage>().Picture =
+                        new Picture() {ID = i, Name = "Picture" + i};
+                    Pictures.Add(new Picture() {ID = i, Name = "Picture" + (i + 2)});
+
+                    PictureImages[i].transform.GetComponent<Image>().sprite =
+                        Resources.Load<Sprite>("CanvasWallArt/Picture" + (i + 2));
+                }
+                else
+                {
+                    ImageSlots[i].transform.GetChild(0).GetComponent<PictureImage>().Picture =
+                        new Picture() { ID = i, Name = "Picture" + i };
+                    Pictures.Add(new Picture() { ID = i, Name = "Picture" + (i) });
+
+                    PictureImages[i].transform.GetComponent<Image>().sprite =
+                        Resources.Load<Sprite>("CanvasWallArt/Picture" + (i));
+                }
+                
                 FinalComination = GameObject.Find("Pictures").GetComponent<PicturesOnTheWall>().FinalCombination;
 
             }

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Wilberforce;
 
 namespace Assets.Scripts.Items
 {
@@ -113,6 +114,10 @@ namespace Assets.Scripts.Items
 
                     }
                     
+                }else if (item.ID == 8)
+                {
+                    var colorBlind = GameObject.Find("Main Camera(Clone)").GetComponent<Colorblind>();
+                    colorBlind.enabled = !colorBlind.enabled;
                 }
             }
 

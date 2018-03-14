@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
     public GameObject inventorySlot;
     public GameObject inventoryItem;
 
-    public const int slotAmount = 5;
+    public const int slotAmount = 7;
     public List<Item> items = new List<Item>();
     public List<GameObject> slots = new List<GameObject>(); 
 
@@ -76,6 +76,40 @@ public class Inventory : MonoBehaviour
             }
         }
             
+    }
+
+    public void RemoveItem(int id)
+    {
+        Item itemToRemove = database.FetchItemByID(id);
+
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] == itemToRemove)
+            {
+                var index = items.IndexOf(itemToRemove);
+
+                if (index != -1)
+                {
+                    items[i] = new Item();
+                }
+
+                for (int j = 0; j < slots.Count; j++)
+                {
+                    if (slots[i].GetComponent<Slot>().transform.GetChild(0) != null)
+                    {
+                        var item = slots[i].GetComponent<Slot>().transform.GetChild(0);
+                        if (item != null)
+                        {
+                            if (item.GetComponent<ItemData>().item.ID == itemToRemove.ID)
+                            {
+                                Debug.Log("Item destroyed" + item.GetComponent<ItemData>().item.ID);
+                                Destroy(slots[i].transform.GetChild(0).gameObject);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public bool CheckForItemInInventory(Item item)

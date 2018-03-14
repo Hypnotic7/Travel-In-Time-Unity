@@ -207,11 +207,14 @@ MonoBehaviour:
   - {fileID: 1734284302495734, guid: 60072b4cecece1647b203d43a4b0ae4a, type: 2}
   - {fileID: 1723638374827150, guid: f57097e49ca388a4a8ac1d4ffb740497, type: 2}
   - {fileID: 1586466975079048, guid: 628cba2af949c6b499390de906fce7f4, type: 2}
+  - {fileID: 1748159296482266, guid: 6ebca12a2b9046c4aa7f237849783c15, type: 2}
   safeInteraction: {fileID: 1734284302495734, guid: 60072b4cecece1647b203d43a4b0ae4a,
     type: 2}
   picturesInteraction: {fileID: 1723638374827150, guid: f57097e49ca388a4a8ac1d4ffb740497,
     type: 2}
   pianoInteraction: {fileID: 1586466975079048, guid: 628cba2af949c6b499390de906fce7f4,
+    type: 2}
+  craftInteraction: {fileID: 1748159296482266, guid: 6ebca12a2b9046c4aa7f237849783c15,
     type: 2}
 --- !u!114 &114253720291216762
 MonoBehaviour:

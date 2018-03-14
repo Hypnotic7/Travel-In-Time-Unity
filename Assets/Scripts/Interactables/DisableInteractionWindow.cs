@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
+using Assets.Scripts.Interactables.Craft;
 using Assets.Scripts.Interactables.Piano;
 using Assets.Scripts.Interactables.Pictures;
 using Interactables.Safe;
@@ -49,6 +50,16 @@ public class DisableInteractionWindow : MonoBehaviour, IPointerClickHandler {
             Destroy(GameObject.Find("Piano_Interaction_Panel(Clone)"));
             var piano = GameObject.Find("Piano").GetComponent<Piano>();
             piano.Clean();
+            interactableManager.interactionWindow.SetActive(false);
+
+
+        }
+        else if (GameObject.Find("Craft_Interaction_Panel(Clone)") != null)
+        {
+
+            Destroy(GameObject.Find("Craft_Interaction_Panel(Clone)"));
+            var craft = GameObject.Find("AlchemyTable").GetComponent<Craft>();
+            //craft.Clean();
             interactableManager.interactionWindow.SetActive(false);
 
 

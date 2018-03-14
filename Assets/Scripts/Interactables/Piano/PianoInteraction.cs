@@ -95,7 +95,7 @@ namespace Assets.Scripts.Interactables.Piano
             if (solved)
             {
                 var inv = GameObject.Find("Inventory").GetComponent<Inventory>();
-                if (!inv.items.Exists(f => f.ID == 1))
+                if (!inv.items.Exists(f => f.ID == 5))
                 {
                     inv.AddItem(5);
                 }

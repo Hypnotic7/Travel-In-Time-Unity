@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupItem : Interactable {
-
+public class PickupItem : Interactable
+{
+    public int ItemID;
     public override void Interact()
     {
         var inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
 
         if (inventory == null) return;
 
-        inventory.AddItem(2);
-        var key = GameObject.Find("Key");
-        key.SetActive(false);
+        if (!inventory.items.Exists(f => f.ID == ItemID))
+        {
+            inventory.AddItem(ItemID);
+            if(ItemID == 6)
+            Destroy(GameObject.Find("Flask"));
+
+        }
+        
     }
 }

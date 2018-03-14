@@ -10,10 +10,11 @@ public class InteractableManager : MonoBehaviour {
 
     public GameObject interactionWindow { get; set; }
     public GameObject interactionPanel { get; set; }
-    public List<GameObject> interactionWindows = new List<GameObject>(3);
+    public List<GameObject> interactionWindows = new List<GameObject>(4);
     public GameObject safeInteraction;
     public GameObject picturesInteraction;
     public GameObject pianoInteraction;
+    public GameObject craftInteraction;
 
 	// Use this for initialization
 	void Start ()
@@ -56,6 +57,11 @@ public class InteractableManager : MonoBehaviour {
                 pianoInteraction.transform.SetParent(interactionWindow.transform,false);
             }
             
+        }
+        else if (interactableString == "AlchemyTable" && !craftInteraction.Equals(null))
+        {
+            craftInteraction = Instantiate(interactionWindows[3]);
+            craftInteraction.transform.SetParent(interactionWindow.transform,false);
         }
 
     }
