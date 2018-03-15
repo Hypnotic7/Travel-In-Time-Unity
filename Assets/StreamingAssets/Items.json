@@ -70,6 +70,13 @@
     "stackable": false,
     "slug": "visibility_flask",
     "cooldown_in_seconds": 0
+  },
+  {
+    "id": 9,
+    "title": "Vinyl",
+    "value": 1000,
+    "stackable": true,
+    "slug": "vinyl_red",
+    "cooldown_in_seconds": 0
   }
-
 ]

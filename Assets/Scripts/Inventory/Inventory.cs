@@ -75,7 +75,6 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
-            
     }
 
     public void RemoveItem(int id)

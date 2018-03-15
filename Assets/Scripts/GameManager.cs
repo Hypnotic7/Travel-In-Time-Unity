@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Wilberforce;
 
 namespace Assets.Scripts
 {
@@ -22,10 +23,13 @@ namespace Assets.Scripts
         {
             //currentTime = "Past_Time_Test";
 
+
+
             if (GameObject.Find("GUI(Clone)") == null)
             {
                 Instantiate(GUI);
             }
+            
 
             if (GameObject.Find("Main Camera(Clone)") == null)
             {
@@ -51,6 +55,7 @@ namespace Assets.Scripts
             {
                 Instantiate(AudioSystem);
             }
+
         }
 
         // Update is called once per frame
@@ -63,7 +68,7 @@ namespace Assets.Scripts
         {
             Debug.Log("Game Status was destroyed");
             PlayerPrefs.SetString("CurrentTime", currentTime);
-            
+
         }
 
         public void LoadScene(string sceneName)
@@ -74,6 +79,7 @@ namespace Assets.Scripts
             DontDestroyOnLoad(GameObject.Find("Character(Clone)"));
             DontDestroyOnLoad(GameObject.Find("EventSystem(Clone)"));
             DontDestroyOnLoad(GameObject.Find("Audio(Clone)"));
+            
         }
     }
 }

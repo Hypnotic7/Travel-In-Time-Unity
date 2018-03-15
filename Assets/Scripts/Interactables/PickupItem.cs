@@ -16,7 +16,15 @@ public class PickupItem : Interactable
             inventory.AddItem(ItemID);
             if(ItemID == 6)
             Destroy(GameObject.Find("Flask"));
+            if (ItemID == 9)
+                Destroy(this.gameObject);
 
+        }
+        else if (inventory.items.Exists(f => f.ID == ItemID))
+        {
+            inventory.AddItem(ItemID);
+            if (ItemID == 9)
+                Destroy(this.gameObject);
         }
         
     }

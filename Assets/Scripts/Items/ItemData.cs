@@ -118,6 +118,33 @@ namespace Assets.Scripts.Items
                 {
                     var colorBlind = GameObject.Find("Main Camera(Clone)").GetComponent<Colorblind>();
                     colorBlind.enabled = !colorBlind.enabled;
+                    if(PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" && colorBlind.enabled)
+                    {
+                        var vinyls = GameObject.Find("Vinyls").transform;
+                        for (int i = 0; i < vinyls.childCount; i++)
+                        {
+                            vinyls.GetChild(i).gameObject.SetActive(colorBlind.enabled);
+                        }
+
+                    }
+                    else if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" && !colorBlind.enabled)
+                    {
+                        var vinyls = GameObject.Find("Vinyls").transform;
+                        for (int i = 0; i < vinyls.childCount; i++)
+                        {
+                            vinyls.GetChild(i).gameObject.SetActive(colorBlind.enabled);
+                        }
+
+                    }else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
+                    {
+                        var notes = GameObject.Find("Notes").transform;
+                        for (int i = 0; i < notes.childCount; i++)
+                        {
+                            notes.GetChild(i).gameObject.SetActive(colorBlind.enabled);
+                        }
+                    }
+                    var invisibilityOnOff = colorBlind.enabled ? 1 : 0;
+                    PlayerPrefs.SetInt("Invisibility",invisibilityOnOff);
                 }
             }
 

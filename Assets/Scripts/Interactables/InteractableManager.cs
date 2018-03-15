@@ -15,6 +15,7 @@ public class InteractableManager : MonoBehaviour {
     public GameObject picturesInteraction;
     public GameObject pianoInteraction;
     public GameObject craftInteraction;
+    public GameObject gramophoneInteraction;
 
 	// Use this for initialization
 	void Start ()
@@ -60,8 +61,20 @@ public class InteractableManager : MonoBehaviour {
         }
         else if (interactableString == "AlchemyTable" && !craftInteraction.Equals(null))
         {
-            craftInteraction = Instantiate(interactionWindows[3]);
-            craftInteraction.transform.SetParent(interactionWindow.transform,false);
+            if (!GameObject.Find("Craft_Interaction_Panel(Clone)"))
+            {
+                craftInteraction = Instantiate(interactionWindows[3]);
+                craftInteraction.transform.SetParent(interactionWindow.transform, false);
+            }
+           
+        }
+        else if (interactableString == "Gramophone" && !gramophoneInteraction.Equals(null))
+        {
+            if (!GameObject.Find("Gramophone_Interaction_Panel(Clone)"))
+            {
+                gramophoneInteraction = Instantiate(interactionWindows[4]);
+                gramophoneInteraction.transform.SetParent(interactionWindow.transform, false);
+            }
         }
 
     }
