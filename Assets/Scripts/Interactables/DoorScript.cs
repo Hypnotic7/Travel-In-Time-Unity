@@ -9,6 +9,7 @@ namespace Interactables
         public bool OpenClose;
         public bool IsTriggered;
         public int counter;
+        private Color startcolor;
 
 
         // Use this for initialization
@@ -17,6 +18,19 @@ namespace Interactables
             IsTriggered = false;
             ContainsKey = false;
             counter = 0;
+        }
+
+        void OnMouseEnter()
+        {
+
+            startcolor = this.GetComponent<Renderer>().material.color;
+            this.GetComponent<Renderer>().material.color = Color.magenta;
+            
+        }
+        void OnMouseExit()
+        {
+            this.GetComponent<Renderer>().material.color = startcolor;
+           
         }
 
         public bool CheckForKey()

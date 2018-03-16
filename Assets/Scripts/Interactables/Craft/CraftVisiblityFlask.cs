@@ -31,7 +31,15 @@ namespace Assets.Scripts.Interactables.Craft
             }
 
             if (counter == gameObjects.Length) Reward();
-
+            else
+            {
+                int count = 1;
+                for (int i = 0; i < gameObjects.Length; i++)
+                {
+                    gameObjects[count].GetComponent<Image>().color = contains[i] ? Color.green : Color.red;
+                    count--;
+                }   
+            }
             return false;
         }
 
@@ -53,6 +61,10 @@ namespace Assets.Scripts.Interactables.Craft
         {
             removeItemsThatWasNeeded();
             GameObject.Find("Inventory").GetComponent<Inventory>().AddItem(rewardID);
+            
+            Destroy(GameObject.Find("Craft_Interaction_Panel(Clone)"));
+            GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);
+
         }
 
         public void OnPointerClick(PointerEventData eventData)

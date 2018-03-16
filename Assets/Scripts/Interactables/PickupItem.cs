@@ -5,6 +5,20 @@ using UnityEngine;
 public class PickupItem : Interactable
 {
     public int ItemID;
+    private Color startcolor;
+
+    void OnMouseEnter()
+    {
+
+        startcolor = this.GetComponent<Renderer>().material.color;
+        this.GetComponent<Renderer>().material.color = Color.magenta;
+
+    }
+    void OnMouseExit()
+    {
+        this.GetComponent<Renderer>().material.color = startcolor;
+    }
+
     public override void Interact()
     {
         var inventory = GameObject.Find("Inventory").GetComponent<Inventory>();

@@ -74,6 +74,16 @@ public class DisableInteractionWindow : MonoBehaviour, IPointerClickHandler {
 
 
         }
+        else if (GameObject.Find("GramophoneRecords_Interaction_Panel(Clone)") != null)
+        {
+
+            Destroy(GameObject.Find("GramophoneRecords_Interaction_Panel(Clone)"));
+            var craft = GameObject.Find("Gramophone").GetComponent<Gramophone>();
+            //craft.Clean();
+            interactableManager.interactionWindow.SetActive(false);
+
+
+        }
 
 
 

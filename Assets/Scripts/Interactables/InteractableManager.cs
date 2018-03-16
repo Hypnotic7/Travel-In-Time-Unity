@@ -16,17 +16,26 @@ public class InteractableManager : MonoBehaviour {
     public GameObject pianoInteraction;
     public GameObject craftInteraction;
     public GameObject gramophoneInteraction;
+    public GameObject gramophoneRecordsInteraction;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
 	{
 	    interactionWindow = GameObject.Find("Interaction_Window_Panel");
 	    interactionWindow.SetActive(false);
-	}
+	    PlayerPrefs.SetInt("UnlockedGramophonePuzzle", 0);
+        if (PlayerPrefs.GetInt("UnlockedGramophonePuzzle") != 1)
+	    {
+	        PlayerPrefs.SetInt("UnlockedGramophonePuzzle", 0);
+        }
+	    
+
+    }
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+	{
+
 	}
 
     public void Activate(string interactableString)
@@ -70,11 +79,18 @@ public class InteractableManager : MonoBehaviour {
         }
         else if (interactableString == "Gramophone" && !gramophoneInteraction.Equals(null))
         {
-            if (!GameObject.Find("Gramophone_Interaction_Panel(Clone)"))
+            if (!GameObject.Find("GramophoneRecords_Interaction_Panel(Clone)") &&
+                     PlayerPrefs.GetInt("UnlockedGramophonePuzzle").Equals(0))
+            {
+                gramophoneRecordsInteraction = Instantiate(interactionWindows[5]);
+                gramophoneRecordsInteraction.transform.SetParent(interactionWindow.transform, false);
+            }
+            if (!GameObject.Find("Gramophone_Interaction_Panel(Clone)") && PlayerPrefs.GetInt("UnlockedGramophonePuzzle").Equals(1))
             {
                 gramophoneInteraction = Instantiate(interactionWindows[4]);
                 gramophoneInteraction.transform.SetParent(interactionWindow.transform, false);
             }
+            
         }
 
     }

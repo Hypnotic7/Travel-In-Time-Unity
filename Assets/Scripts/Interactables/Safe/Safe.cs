@@ -17,11 +17,29 @@ namespace Interactables.Safe
         private float timeStamp;
         private bool IsCoolingDown = false;
         private const int coolDownPeriodInSeconds = 3;
+        private Color startcolor;
 
 
         void Start()
         {
             PinNumbersObjects = new List<Transform>();
+        }
+
+        void OnMouseEnter()
+        {
+
+            startcolor = this.GetComponent<Renderer>().material.color;
+            this.GetComponent<Renderer>().material.color = Color.magenta;
+            this.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.magenta;
+            this.transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().material.color = Color.magenta;
+
+
+        }
+        void OnMouseExit()
+        {
+            this.GetComponent<Renderer>().material.color = startcolor;
+            this.transform.GetChild(0).GetComponent<Renderer>().material.color = startcolor;
+            this.transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().material.color = startcolor;
         }
 
         public override void Interact()

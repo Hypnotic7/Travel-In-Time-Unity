@@ -17,7 +17,21 @@ namespace Assets.Scripts.Interactables.Piano
         public InteractableManager InteractableManager;
         public bool isPlaying;
         private bool isActive;
-        
+
+        private Color startcolor;
+
+        void OnMouseEnter()
+        {
+
+            startcolor = transform.GetChild(0).GetComponent<Renderer>().material.color;
+            transform.GetChild(0).GetComponent<Renderer>().material.color = Color.magenta;
+
+        }
+        void OnMouseExit()
+        {
+            transform.GetChild(0).GetComponent<Renderer>().material.color = startcolor;
+        }
+
 
         void Start()
         {

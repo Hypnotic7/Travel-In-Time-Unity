@@ -23,7 +23,6 @@ namespace Assets.Scripts.Interactables.Piano
         private bool IsCoolingDown;
         private const int coolDownPeriodInSeconds = 3;
 
-
         void Start()
         {
             
@@ -99,6 +98,9 @@ namespace Assets.Scripts.Interactables.Piano
                 {
                     inv.AddItem(5);
                 }
+                Destroy(this.gameObject);
+                GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);
+                
             }
            
 

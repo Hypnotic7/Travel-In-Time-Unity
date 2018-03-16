@@ -12,22 +12,26 @@ namespace Assets.Scripts.Interactables.Gramophone
 {
     public class GramophoneInteraction : MonoBehaviour, IGramophone
     {
-        public List<Sprite> sprites = new List<Sprite>(4);
-        public List<GameObject> vinylButtons = new List<GameObject>(4);
-        public List<GameObject> outputSlots = new List<GameObject>(4);
+        public List<Sprite> sprites;
+        public List<GameObject> vinylButtons;
+        public List<GameObject> outputSlots;
         private int[] input = new int[4];
         public const string Answer = "3241";
         private float timeStamp;
         private bool IsCoolingDown;
         private const int coolDownPeriodInSeconds = 3;
 
+        void Start()
+        {
+            
+        }
 
         public void SetOutputSlot(int vinylClicked)
         {
             for (int i = 0; i < outputSlots.Count; i++)
             {
                 var currentSprite = outputSlots[i].transform.GetChild(0).GetComponent<Image>().sprite;
-                if (currentSprite.Equals(null))
+                if (currentSprite == null)
                 {
                     outputSlots[i].transform.GetChild(0).gameObject.SetActive(true);
                     outputSlots[i].transform.GetChild(0).GetComponent<Image>().sprite = sprites[vinylClicked];
@@ -37,12 +41,10 @@ namespace Assets.Scripts.Interactables.Gramophone
                         if (CheckIfSolved())
                         {
                             outputSlots.ForEach(f => f.GetComponent<Image>().color = Color.green);
-
                         }
                         else
                         {
                             outputSlots.ForEach(f => f.GetComponent<Image>().color = Color.red);
-
                         }
                         timeStamp = Time.time + coolDownPeriodInSeconds;
                         IsCoolingDown = true;

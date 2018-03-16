@@ -23,8 +23,8 @@ namespace Assets.Scripts.Interactables.Gramophone
             string buttonClicked = this.gameObject.name.Substring(6);
 
             int.TryParse(buttonClicked, out vinylClicked);
-
-            gramophone.SetOutputSlot(vinylClicked - 1);
+            vinylClicked -= 1;
+            gramophone.SetOutputSlot(vinylClicked);
         }
 
         

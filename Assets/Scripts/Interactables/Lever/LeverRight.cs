@@ -18,7 +18,23 @@ namespace Assets.Scripts.Interactables.Lever
         public bool activated;
         private float timeStamp;
         private const int ActivatedInSeconds = 15;
-        
+        private Color startcolor;
+
+        void OnMouseEnter()
+        {
+
+            startcolor = this.GetComponent<Renderer>().material.color;
+            this.GetComponent<Renderer>().material.color = Color.magenta;
+            this.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.magenta;
+
+        }
+        void OnMouseExit()
+        {
+            this.GetComponent<Renderer>().material.color = startcolor;
+            this.transform.GetChild(0).GetComponent<Renderer>().material.color = startcolor;
+
+        }
+
         void Start()
         {
             leverRightHandleObj = GameObject.Find(leverHandleObjName);

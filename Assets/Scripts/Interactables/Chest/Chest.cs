@@ -8,12 +8,30 @@ public class Chest : Interactable
     public bool OpenClose;
     public bool IsTriggered;
     public int counter;
+
+    private Color startcolor;
 	// Use this for initialization
 	void Start () {
 	    IsTriggered = false;
 	    ContainsKey = false;
 	    counter = 0;
     }
+    void OnMouseEnter()
+    {
+        
+            startcolor = transform.parent.GetComponent<Renderer>().material.color;
+            transform.parent.GetComponent<Renderer>().material.color = Color.magenta;
+        this.GetComponent<Renderer>().material.color = Color.magenta;
+
+
+
+    }
+    void OnMouseExit()
+    {
+        transform.parent.GetComponent<Renderer>().material.color = startcolor;
+        this.GetComponent<Renderer>().material.color = startcolor;
+    }
+
 
     public bool CheckForKey()
     {

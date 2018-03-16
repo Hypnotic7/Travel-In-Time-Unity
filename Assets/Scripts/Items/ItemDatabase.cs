@@ -37,6 +37,7 @@ namespace Items
                 database.Add(new Item((int)itemData[index]["id"], itemData[index]["title"].ToString(),
                                       (int)itemData[index]["value"],(bool)itemData[index]["stackable"],
                                       itemData[index]["slug"].ToString(),(int)itemData[index]["cooldown_in_seconds"]));
+
             }
         }
     }
