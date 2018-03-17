@@ -100,6 +100,7 @@ namespace Assets.Scripts.Items
                         inv.slots[item.ID].GetComponent<Image>().color = Color.yellow;
                         gm.currentTime = "Past_Time_Test";
                         gm.LoadScene(gm.currentTime);
+                        
                     }
                     else if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" || gm.currentTime == "Past_Time")
                     {
@@ -124,6 +125,7 @@ namespace Assets.Scripts.Items
                         for (int i = 0; i < vinyls.childCount; i++)
                         {
                             vinyls.GetChild(i).gameObject.SetActive(colorBlind.enabled);
+                            GameplayChecker.InvisibilityMode = colorBlind.enabled;
                         }
 
                     }
@@ -133,6 +135,7 @@ namespace Assets.Scripts.Items
                         for (int i = 0; i < vinyls.childCount; i++)
                         {
                             vinyls.GetChild(i).gameObject.SetActive(colorBlind.enabled);
+                            GameplayChecker.InvisibilityMode = colorBlind.enabled;
                         }
 
                     }else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
@@ -141,6 +144,7 @@ namespace Assets.Scripts.Items
                         for (int i = 0; i < notes.childCount; i++)
                         {
                             notes.GetChild(i).gameObject.SetActive(colorBlind.enabled);
+                            GameplayChecker.InvisibilityMode = colorBlind.enabled;
                         }
                     }
                     var invisibilityOnOff = colorBlind.enabled ? 1 : 0;

@@ -16,15 +16,18 @@ namespace Assets.Scripts
         public GameObject MainCamera;
         public GameObject EventSystem;
         public GameObject AudioSystem;
+        public GameObject GameplayCheckerObj;
 
 
         // Use this for initialization
         void Start()
         {
             //currentTime = "Past_Time_Test";
-
-
-
+            if (GameObject.Find("GameplayChecker(Clone)") == null)
+            {
+                Instantiate(GameplayCheckerObj);
+            }
+            
             if (GameObject.Find("GUI(Clone)") == null)
             {
                 Instantiate(GUI);
@@ -56,6 +59,32 @@ namespace Assets.Scripts
                 Instantiate(AudioSystem);
             }
 
+
+            if (GameplayChecker.InvisibilityMode)
+            {
+                var colorBlind = GameObject.Find("Main Camera(Clone)").GetComponent<Colorblind>();
+
+                if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" && colorBlind.enabled)
+                {
+                    var vinyls = GameObject.Find("Vinyls").transform;
+                    for (int i = 0; i < vinyls.childCount; i++)
+                    {
+                        vinyls.GetChild(i).gameObject.SetActive(colorBlind.enabled);
+                    }
+
+                }
+                else if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" && !colorBlind.enabled)
+                {
+                    var vinyls = GameObject.Find("Vinyls").transform;
+                    for (int i = 0; i < vinyls.childCount; i++)
+                    {
+                        vinyls.GetChild(i).gameObject.SetActive(colorBlind.enabled);
+                    }
+
+                }
+            }
+
+
         }
 
         // Update is called once per frame
@@ -74,6 +103,7 @@ namespace Assets.Scripts
         public void LoadScene(string sceneName)
         {
             SceneManager.LoadScene(sceneName);
+            DontDestroyOnLoad(GameObject.Find("GameplayChecker(Clone)"));
             DontDestroyOnLoad(GameObject.Find("GUI(Clone)"));
             DontDestroyOnLoad(GameObject.Find("Main Camera(Clone)"));
             DontDestroyOnLoad(GameObject.Find("Character(Clone)"));

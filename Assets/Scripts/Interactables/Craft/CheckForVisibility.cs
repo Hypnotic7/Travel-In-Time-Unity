@@ -19,10 +19,14 @@ namespace Assets.Scripts.Interactables.Craft
                
                 for (int i = 0; i < transform.childCount; i++)
                 {
+                    Debug.Log(GameplayChecker.VinylPickUpNorthEast);
                     transform.GetChild(i).gameObject.SetActive(colorBlind.enabled);
                 }
 
-               
+
+                
+
+
             }
 
         }

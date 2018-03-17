@@ -199,6 +199,12 @@ Prefab:
       value: 
       objectReference: {fileID: 1212079013598616, guid: 9aff2d178a08ff84d8c90580d7a18afc,
         type: 2}
+    - target: {fileID: 114335194880690042, guid: ad9542236e9ef4b4ab1d91fa3194b2f9,
+        type: 2}
+      propertyPath: GameplayCheckerObj
+      value: 
+      objectReference: {fileID: 1060793102729210, guid: 6f1e3602783b5c34caaa6be004170dbd,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad9542236e9ef4b4ab1d91fa3194b2f9, type: 2}
   m_IsPrefabParent: 0
