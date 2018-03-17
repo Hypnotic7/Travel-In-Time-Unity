@@ -86,5 +86,21 @@
     "stackable": false,
     "slug": "key_chest_2",
     "cooldown_in_seconds": 0
+  },
+  {
+    "id": 11,
+    "title": "Key Chest 1 Part 1",
+    "value": 1000,
+    "stackable": false,
+    "slug": "key_chest_1_part_1",
+    "cooldown_in_seconds": 0
+  },
+  {
+    "id": 12,
+    "title": "Key Chest 1 Part 2",
+    "value": 1000,
+    "stackable": false,
+    "slug": "key_chest_1_part_2",
+    "cooldown_in_seconds": 0
   }
 ]

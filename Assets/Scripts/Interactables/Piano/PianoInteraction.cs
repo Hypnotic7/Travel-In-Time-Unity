@@ -22,6 +22,7 @@ namespace Assets.Scripts.Interactables.Piano
         private float timeStamp;
         private bool IsCoolingDown;
         private const int coolDownPeriodInSeconds = 3;
+        private bool solved;
 
         void Start()
         {
@@ -66,7 +67,7 @@ namespace Assets.Scripts.Interactables.Piano
                       
                         if (i == inputValues.Length -1 )
                         {
-                            var solved = CheckOutput(inputValues);
+                            solved = CheckOutput(inputValues);
                             Solved(solved);
                         }
                         return;
@@ -98,8 +99,7 @@ namespace Assets.Scripts.Interactables.Piano
                 {
                     inv.AddItem(5);
                 }
-                Destroy(this.gameObject);
-                GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);
+                
                 
             }
            
@@ -115,6 +115,12 @@ namespace Assets.Scripts.Interactables.Piano
                 {
                     Clean();
                     IsCoolingDown = false;
+                    if (solved)
+                    {
+                        Destroy(this.gameObject);
+                        GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);
+                    }
+                        
                 }
             }
         }

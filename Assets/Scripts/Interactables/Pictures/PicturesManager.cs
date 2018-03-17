@@ -62,9 +62,27 @@ namespace Assets.Scripts.Interactables.Pictures
                     var inv = GameObject.Find("Inventory").GetComponent<Inventory>();
                     if (!inv.items.Exists(f => f.ID == 3))
                     {
-                        inv.AddItem(3);
+                        if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test")
+                        {
+                            inv.AddItem(11);
+                        }
+                        else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
+                        {
+                            inv.AddItem(12);
+                        }
+
+                        if (inv.items.Exists(f => f.ID == 11) && inv.items.Exists(f => f.ID == 12))
+                        {
+                                inv.RemoveItem(11);
+                                inv.RemoveItem(12);
+                                inv.AddItem(3);
+                        }
+                        
                     }
+
                     
+                    
+
                 }
                 else
                 {

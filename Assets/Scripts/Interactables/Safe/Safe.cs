@@ -163,8 +163,12 @@ namespace Interactables.Safe
 
                 this.SafePinNumber.PinNumbers[i] = 0;
             }
-           
-           
+
+            if (IsSafeOpen)
+            {
+                Destroy(GameObject.Find("Safe_Interaction_Panel(Clone)"));
+                GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);
+            }
         }
 
         public void CoolingDown()
