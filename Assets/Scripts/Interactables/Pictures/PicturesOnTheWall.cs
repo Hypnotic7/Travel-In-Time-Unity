@@ -39,12 +39,37 @@ namespace Assets.Scripts.Interactables.Pictures
         }
         public override void Interact()
         {
+            var inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+            if (inv != null)
+            {
+                Debug.Log(GameObject.Find("GameManager").GetComponent<GameManager>().currentTime);
+                if (GameObject.Find("GameManager").GetComponent<GameManager>().currentTime == "Past_Time_Test")
+                {
+                    if(!GameplayChecker.PicturesPastPuzzleSolved)
+                        InstantiateAndActivate();
+                }
+
+                else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
+                {
+                    if(!GameplayChecker.PicturesPresentPuzzleSolved)
+                    InstantiateAndActivate();
+                }
+            }
+
+        }
+
+        public void DestroyPictures()
+        {
+            Destroy(this.gameObject);
+        }
+
+        private void InstantiateAndActivate()
+        {
             InteractableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
             InteractableManager.picturesInteraction = this.gameObject;
             if (InteractableManager == null) return;
             playerAgent = GameObject.Find("Character(Clone)").GetComponent<NavMeshAgent>();
             InteractableManager.Activate("Pictures");
-
         }
     }
 }

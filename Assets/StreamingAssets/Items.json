@@ -69,7 +69,7 @@
     "value": 1000,
     "stackable": false,
     "slug": "visibility_flask",
-    "cooldown_in_seconds": 0
+    "cooldown_in_seconds": 2
   },
   {
     "id": 9,
@@ -101,6 +101,14 @@
     "value": 1000,
     "stackable": false,
     "slug": "key_chest_1_part_2",
+    "cooldown_in_seconds": 0
+  },
+  {
+    "id": 13,
+    "title": "Piece of Puzzle",
+    "value": 1000,
+    "stackable": false,
+    "slug": "piece_of_puzzle",
     "cooldown_in_seconds": 0
   }
 ]

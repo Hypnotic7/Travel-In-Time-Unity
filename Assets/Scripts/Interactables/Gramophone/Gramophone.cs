@@ -38,10 +38,13 @@ namespace Assets.Scripts.Interactables.Gramophone
 
         public override void Interact()
         {
-            interactableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
-            interactableManager.gramophoneInteraction = this.gameObject;
-            if(GameObject.Find("Gramophone"))
-                interactableManager.Activate("Gramophone");
+            if (!GameplayChecker.GramophonePuzzle)
+            {
+                interactableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
+                interactableManager.gramophoneInteraction = this.gameObject;
+                if (GameObject.Find("Gramophone"))
+                    interactableManager.Activate("Gramophone");
+            }
         }
     }
 }

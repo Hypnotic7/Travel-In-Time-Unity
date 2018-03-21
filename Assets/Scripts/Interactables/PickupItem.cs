@@ -19,6 +19,8 @@ public class PickupItem : Interactable
             Destroy(gameObject);
         if (gameObject.name == "vinyl3" && GameplayChecker.VinylPickUpNorthEast)
             Destroy(gameObject);
+        if (GameplayChecker.EmptyFlaskPickedUp && gameObject.name == "Flask")
+            Destroy(gameObject);
     }
 
     void OnMouseEnter()
@@ -60,6 +62,7 @@ public class PickupItem : Interactable
         {
             inventory.AddItem(ItemID);
             if (ItemID == 6)
+                GameplayChecker.EmptyFlaskPickedUp = true;
                 Destroy(GameObject.Find("Flask"));
             if (ItemID == 9)
             {

@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 222053086773690718}
   - component: {fileID: 114971938136994788}
   m_Layer: 5
-  m_Name: PianoText
+  m_Name: GramophoneText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -776,6 +776,7 @@ MonoBehaviour:
   - {fileID: 1704093804398236}
   - {fileID: 1396967605229920}
   - {fileID: 1693361663329418}
+  GramophoneText: {fileID: 114971938136994788}
 --- !u!114 &114336776588119180
 MonoBehaviour:
   m_ObjectHideFlags: 1

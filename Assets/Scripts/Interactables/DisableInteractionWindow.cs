@@ -84,8 +84,19 @@ public class DisableInteractionWindow : MonoBehaviour, IPointerClickHandler {
 
 
         }
+        else if (GameObject.Find("Puzzle_Interaction_Panel(Clone)") != null)
+        {
+            Destroy(GameObject.Find("Puzzle_Interaction_Panel(Clone)"));
+            interactableManager.interactionWindow.SetActive(false);
+        }
+    }
 
-
-
+    public void DisablePictures()
+    {
+        var interactableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
+        Destroy(GameObject.Find("Pictures_Interaction_Panel(Clone)"));
+        var pictures = GameObject.Find("PicturesPanel").GetComponent<PicturesManager>();
+        pictures.Clean();
+        interactableManager.interactionWindow.SetActive(false);
     }
 }

@@ -10,13 +10,14 @@ public class InteractableManager : MonoBehaviour {
 
     public GameObject interactionWindow { get; set; }
     public GameObject interactionPanel { get; set; }
-    public List<GameObject> interactionWindows = new List<GameObject>(4);
+    public List<GameObject> interactionWindows = new List<GameObject>(7);
     public GameObject safeInteraction;
     public GameObject picturesInteraction;
     public GameObject pianoInteraction;
     public GameObject craftInteraction;
     public GameObject gramophoneInteraction;
     public GameObject gramophoneRecordsInteraction;
+    public GameObject puzzleInteraction;
 
     // Use this for initialization
     void Start ()
@@ -90,7 +91,14 @@ public class InteractableManager : MonoBehaviour {
                 gramophoneInteraction = Instantiate(interactionWindows[4]);
                 gramophoneInteraction.transform.SetParent(interactionWindow.transform, false);
             }
+
             
+        }
+
+        else if (interactableString == "Puzzle")
+        {
+            puzzleInteraction = Instantiate(interactionWindows[6]);
+            puzzleInteraction.transform.SetParent(interactionWindow.transform, false);
         }
 
     }

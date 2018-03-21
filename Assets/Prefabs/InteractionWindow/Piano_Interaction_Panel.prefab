@@ -2648,7 +2648,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play the sound with the keyboard in correct sequence
+  m_Text: Play the sound with the keyboard in correct sequence. Some interactive objects
+    are disabled and needs to be activated.
 --- !u!114 &114550966229726396
 MonoBehaviour:
   m_ObjectHideFlags: 1

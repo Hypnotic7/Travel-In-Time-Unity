@@ -35,7 +35,7 @@ namespace Assets.Scripts.Interactables.Gramophone
                 if (!contains) return false;
                 removeItemsThatWasNeeded();
                 deactivateAndActivate("Gramophone");
-                reward(10);
+                
             }
             return true;
 

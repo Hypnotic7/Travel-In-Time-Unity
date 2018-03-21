@@ -25,11 +25,13 @@ namespace Assets.Scripts.Interactables.Craft
 
         public override void Interact()
         {
-            interactableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
-            interactableManager.craftInteraction = this.gameObject;
-            if(GameObject.Find("AlchemyTable"))
+            if (!GameplayChecker.CraftedInvisiblityFlask)
+            {
+                interactableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
+                interactableManager.craftInteraction = this.gameObject;
+                if (GameObject.Find("AlchemyTable"))
                     interactableManager.Activate("AlchemyTable");
-
+            }
         }
 
     }

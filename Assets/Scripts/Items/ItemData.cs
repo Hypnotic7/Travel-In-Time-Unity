@@ -138,7 +138,8 @@ namespace Assets.Scripts.Items
                             GameplayChecker.InvisibilityMode = colorBlind.enabled;
                         }
 
-                    }else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
+                    }
+                    else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
                     {
                         var notes = GameObject.Find("Notes").transform;
                         for (int i = 0; i < notes.childCount; i++)
@@ -149,6 +150,13 @@ namespace Assets.Scripts.Items
                     }
                     var invisibilityOnOff = colorBlind.enabled ? 1 : 0;
                     PlayerPrefs.SetInt("Invisibility",invisibilityOnOff);
+                }
+                else if (item.ID == 13)
+                {
+                    var interactableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
+                    if (interactableManager == null) return;
+                    interactableManager.puzzleInteraction = this.gameObject;
+                    interactableManager.Activate("Puzzle");
                 }
             }
 

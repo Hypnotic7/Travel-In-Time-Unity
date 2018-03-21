@@ -47,6 +47,7 @@ namespace Assets.Scripts.Interactables.Piano
         public override void Interact()
         {
             Debug.Log("Interacted");
+            Debug.Log(PlayerPrefs.GetString("CurrentTime"));
             
             if (PlayerPrefs.GetString("CurrentTime").StartsWith("Past") && !isPlaying)
             {
@@ -57,10 +58,15 @@ namespace Assets.Scripts.Interactables.Piano
             }
             else
             {
-                InteractableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
-                InteractableManager.pianoInteraction = this.gameObject;
-                if (GameObject.Find("Piano"))
-                    InteractableManager.Activate("Piano");
+                if (!GameplayChecker.PianoPuzzleSolved)
+                {
+                    InteractableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
+                    InteractableManager.pianoInteraction = this.gameObject;
+                    if (GameObject.Find("Piano"))
+                        InteractableManager.Activate("Piano");
+
+                }
+              
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Interactables.Pictures
@@ -22,8 +23,9 @@ namespace Assets.Scripts.Interactables.Pictures
         public int Counter;
         private bool isCoolingDown = false;
         private float timeStamp;
-        private const int coolDownPeriodInSeconds = 4;
+        private const int coolDownPeriodInSeconds = 3;
         public string FinalComination { get; set; }
+        private bool solved;
 
 
         void Start()
@@ -55,20 +57,24 @@ namespace Assets.Scripts.Interactables.Pictures
                         imageSlot.transform.GetComponent<Image>().color = Color.green;
                     }
 
-                    this.PicturesText.text = "Correct Order";
+                    this.PicturesText.text = "You have successfully solved the puzzle. You have received a part of the key. The window will close in 3 seconds.";
                     timeStamp = Time.time + coolDownPeriodInSeconds;
                     isCoolingDown = true;
+
 
                     var inv = GameObject.Find("Inventory").GetComponent<Inventory>();
                     if (!inv.items.Exists(f => f.ID == 3))
                     {
-                        if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test")
+                        Debug.Log(PlayerPrefs.GetString("CurrentTime"));
+                        if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" || PlayerPrefs.GetString("CurrentTime") == string.Empty)
                         {
-                            inv.AddItem(11);
+                            if(!inv.items.Exists(f => f.ID == 11) || !inv.items.Exists(f => f.ID == 2))
+                                inv.AddItem(11);
                         }
                         else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
                         {
-                            inv.AddItem(12);
+                            if (!inv.items.Exists(f => f.ID == 12) || !inv.items.Exists(f => f.ID == 2))
+                                inv.AddItem(12);
                         }
 
                         if (inv.items.Exists(f => f.ID == 11) && inv.items.Exists(f => f.ID == 12))
@@ -79,9 +85,12 @@ namespace Assets.Scripts.Interactables.Pictures
                         }
                         
                     }
+                    solved = true;
+                    if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test")
+                        GameplayChecker.PicturesPastPuzzleSolved = true;
+                    else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
+                        GameplayChecker.PicturesPresentPuzzleSolved = true;
 
-                    
-                    
 
                 }
                 else
@@ -90,7 +99,7 @@ namespace Assets.Scripts.Interactables.Pictures
                     {
                         imageSlot.transform.GetComponent<Image>().color = Color.red;
                     }
-                    this.PicturesText.text = "Incorrect Order";
+                    this.PicturesText.text = "Unfortunately, your order is incorrect. The puzzle will restart in 3 seconds.";
                     timeStamp = Time.time + coolDownPeriodInSeconds;
                     isCoolingDown = true;
 
@@ -111,12 +120,22 @@ namespace Assets.Scripts.Interactables.Pictures
                         imageSlot.transform.GetComponent<Image>().color = Color.white;
                     }
                    
-                       this.PicturesText.text = "Drag and Drop Pictures in the right order with only two moves";
+                       this.PicturesText.text = "Drag and Drop Pictures in the right order with only two moves. Use your time watch to travel in time, take a look around for reflection.";
                        isCoolingDown = false;
                     Clean();
                     Instantiate();
+                    if (solved)
+                    {
+                      
+                        Destroy(GameObject.Find("Pictures_Interaction_Panel(Clone)"));
+                        var pictures = GameObject.Find("PicturesPanel").GetComponent<PicturesManager>();
+                        pictures.Clean();
+                        GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);
+
+                    }
                 }
-                
+
+
             }
         }
 
@@ -180,15 +199,15 @@ namespace Assets.Scripts.Interactables.Pictures
                 var counter = 3;
                 for (var i = 0; i < 3; i++)
                 {
-                    
-                        PictureImages[i].transform.GetComponent<Image>().sprite =
-                            Resources.Load<Sprite>("CanvasWallArt/Picture" + (counter));
+
+                    PictureImages[i].transform.GetComponent<Image>().sprite =
+                        Resources.Load<Sprite>("CanvasWallArt/Picture" + (counter));
                     counter--;
                 }
-                   
-                
+
+
             }
-            
+
 
 
         }

@@ -41,10 +41,16 @@ public class Chest : Interactable
         {
             foreach (var item in inv.items)
             {
-                if (item.ID == 3)
+                if (gameObject.name == "Chest_Lid1" && item.ID == 3)
                 {
                     ContainsKey = true;
                 }
+
+                if (gameObject.name == "Chest_Lid2" && item.ID == 10)
+                {
+                    ContainsKey = true;
+                }
+
             }
         }
         return ContainsKey;
@@ -69,9 +75,18 @@ public class Chest : Interactable
 
                         transform.Rotate(60,0 , 0, Space.Self);
                         OpenClose = !OpenClose;
-                        if (!inv.items.Exists(f => f.ID == 4))
+                        if (gameObject.name == "Chest_Lid1")
                         {
-                            inv.AddItem(4);
+                            if (!inv.items.Exists(f => f.ID == 4))
+                            {
+                                inv.AddItem(4);
+                            }
+                            
+                        }
+                        else if (gameObject.name == "Chest_Lid2")
+                        {
+                            if(!inv.items.Exists(f => f.ID == 13))
+                                inv.AddItem(13);
                         }
                     }
                     else if (!OpenClose)
@@ -80,9 +95,15 @@ public class Chest : Interactable
                         transform.Rotate(-60, 00, 0, Space.Self);
                         OpenClose = !OpenClose;
                         IsTriggered = false;
-                        if (!inv.items.Exists(f => f.ID == 4))
+                        if (gameObject.name == "Chest_Lid1")
                         {
-                            inv.AddItem(4);
+                            if (!inv.items.Exists(f => f.ID == 4))
+                                inv.AddItem(4);
+                        }
+                        else if (gameObject.name == "Chest_Lid2")
+                        {
+                            if (!inv.items.Exists(f => f.ID == 13))
+                                inv.AddItem(13);
                         }
                     }
                     counter++;

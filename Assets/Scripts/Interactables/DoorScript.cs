@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts;
+using UnityEngine;
 
 namespace Interactables
 {
@@ -18,6 +19,13 @@ namespace Interactables
             IsTriggered = false;
             ContainsKey = false;
             counter = 0;
+
+            if(!GameplayChecker.AreDoorsOpen && GameplayChecker.SafePuzzleSolved)
+                OpenDoors();
+            else if(GameplayChecker.AreDoorsOpen && GameplayChecker.SafePuzzleSolved)
+                CloseDoors();
+                    
+            
         }
 
         void OnMouseEnter()
@@ -67,23 +75,13 @@ namespace Interactables
                         if (OpenClose && counter != 0)
                         {
                             Debug.Log("Doors Open: " + OpenClose);
-                            var door = GameObject.Find("DoorRoom2").transform;
-                            transform.Rotate(0, -90, 0, Space.Self);
-                            transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
-                            //door.localRotation = newRotation;
-                            OpenClose = !OpenClose;
-                            IsTriggered = false;
+                            OpenDoors();
 
                         }
                         else if (!OpenClose)
                         {
                             Debug.Log("Doors Closed: " + OpenClose);
-                            var door = GameObject.Find("DoorRoom2").transform;
-                            transform.Rotate(0, 90, 0, Space.Self);
-                            transform.localScale = new Vector3(0.7f, transform.localScale.y, transform.localScale.z);
-                            //door.localRotation = newRotation;
-                            OpenClose = !OpenClose;
-                            IsTriggered = false;
+                            CloseDoors();
 
                         }
                         counter++;
@@ -91,6 +89,24 @@ namespace Interactables
                 }
 
             }
+        }
+
+        private void OpenDoors()
+        {
+            transform.Rotate(0, -90, 0, Space.Self);
+            transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
+            OpenClose = !OpenClose;
+            IsTriggered = false;
+            GameplayChecker.AreDoorsOpen = OpenClose;
+        }
+
+        private void CloseDoors()
+        {
+            transform.Rotate(0, 90, 0, Space.Self);
+            transform.localScale = new Vector3(0.7f, transform.localScale.y, transform.localScale.z);
+            OpenClose = !OpenClose;
+            IsTriggered = false;
+            GameplayChecker.AreDoorsOpen = OpenClose;
         }
     }
            

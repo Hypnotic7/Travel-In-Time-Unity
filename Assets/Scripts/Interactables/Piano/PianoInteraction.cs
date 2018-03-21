@@ -68,6 +68,7 @@ namespace Assets.Scripts.Interactables.Piano
                         if (i == inputValues.Length -1 )
                         {
                             solved = CheckOutput(inputValues);
+                            GameplayChecker.PianoPuzzleSolved = solved;
                             Solved(solved);
                         }
                         return;
@@ -88,7 +89,8 @@ namespace Assets.Scripts.Interactables.Piano
                 
             }
 
-            pianoText.GetComponent<Text>().text = solved ? "Correct Order" : "Incorrect Order";
+            pianoText.GetComponent<Text>().text = solved ? "You have played the melody in correct order. The window will close in 3 seconds." :
+                                                           "Unfortunately, the melody that you have played is incorrect. The puzzle will restart in 3 seconds.";
             
                 timeStamp = Time.time + coolDownPeriodInSeconds;
                 IsCoolingDown = true;
@@ -99,8 +101,6 @@ namespace Assets.Scripts.Interactables.Piano
                 {
                     inv.AddItem(5);
                 }
-                
-                
             }
            
 
@@ -113,13 +113,21 @@ namespace Assets.Scripts.Interactables.Piano
             {
                 if (timeStamp <= Time.time)
                 {
-                    Clean();
-                    IsCoolingDown = false;
-                    if (solved)
+                    if (GameplayChecker.PianoPuzzleSolved)
                     {
-                        Destroy(this.gameObject);
+                        Clean();
+                        Destroy(GameObject.Find("Piano_Interaction_Panel(Clone)"));
+                        
                         GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);
+                       
+                        IsCoolingDown = false;
                     }
+                    else
+                    {
+                        Clean();
+                        IsCoolingDown = false;
+                    }
+                    
                         
                 }
             }
@@ -127,7 +135,7 @@ namespace Assets.Scripts.Interactables.Piano
 
         private void Clean()
         {
-            pianoText.GetComponent<Text>().text = "Play the sound with the keyboard in correct sequence";
+            pianoText.GetComponent<Text>().text = "Play the sound with the keyboard in correct sequence. Some interactive objects are disabled and need to be activated.";
             for (int i = 0; i < inputValues.Length; i++)
             {
                 inputValues[i] = string.Empty;

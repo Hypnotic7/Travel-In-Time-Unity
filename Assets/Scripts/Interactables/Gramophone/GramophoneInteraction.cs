@@ -15,6 +15,7 @@ namespace Assets.Scripts.Interactables.Gramophone
         public List<Sprite> sprites;
         public List<GameObject> vinylButtons;
         public List<GameObject> outputSlots;
+        public Text GramophoneText;
         private int[] input = new int[4];
         public const string Answer = "3241";
         private float timeStamp;
@@ -41,9 +42,15 @@ namespace Assets.Scripts.Interactables.Gramophone
                         if (CheckIfSolved())
                         {
                             outputSlots.ForEach(f => f.GetComponent<Image>().color = Color.green);
+                            GameplayChecker.GramophonePuzzle = true;
+                            GramophoneText.text =
+                                "You have successfully played records. The window will close in 3 seconds.";
+                            reward(10);
                         }
                         else
                         {
+                            GramophoneText.text =
+                                "Unfortunately, the records that you have played are incorrect. The puzzle will restart in 3 seconds.";
                             outputSlots.ForEach(f => f.GetComponent<Image>().color = Color.red);
                         }
                         timeStamp = Time.time + coolDownPeriodInSeconds;
@@ -54,6 +61,10 @@ namespace Assets.Scripts.Interactables.Gramophone
             }
 
 
+        }
+        private void reward(int itemID)
+        {
+            GameObject.Find("Inventory").GetComponent<Inventory>().AddItem(itemID);
         }
 
         private void Clean()
@@ -72,9 +83,23 @@ namespace Assets.Scripts.Interactables.Gramophone
             {
                 if (timeStamp <= Time.time)
                 {
-                    Clean();
-                    IsCoolingDown = false;
-                    outputSlots.ForEach(f => f.GetComponent<Image>().color = Color.white);
+
+                    if (GameplayChecker.GramophonePuzzle)
+                    {
+                        Clean();
+                        Destroy(gameObject);
+                        GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);
+                        IsCoolingDown = false;
+                    }
+                    else
+                    {
+                        Clean();
+                        IsCoolingDown = false;
+                        outputSlots.ForEach(f => f.GetComponent<Image>().color = Color.white);
+                        GramophoneText.text =
+                            "Play the records in the correct order to the notes that you can find on the wall by the gramophone.";
+                    }
+                    
                 }
             }
         }

@@ -423,7 +423,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Drag and Drop Pictures in the right order with only two moves
+  m_Text: Drag and Drop Pictures in the right order with only two moves. Use your
+    time watch to travel in time, take a look around for reflection.
 --- !u!114 &114661999935728986
 MonoBehaviour:
   m_ObjectHideFlags: 1

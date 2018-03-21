@@ -15,6 +15,14 @@ namespace Assets.Scripts
         public static bool VinylPickUpSouth { get; set; }
         public static bool VinylPickUpEast { get; set; }
         public static bool InvisibilityMode { get; set; }
+        public static bool PicturesPastPuzzleSolved { get; set; }
+        public static bool PicturesPresentPuzzleSolved { get; set; }
+        public static bool SafePuzzleSolved { get; set; }
+        public static bool PianoPuzzleSolved { get; set; }
+        public static bool CraftedInvisiblityFlask { get; set; }
+        public static bool GramophonePuzzle { get; set; }
+        public static bool EmptyFlaskPickedUp { get; set; }
+        public static bool AreDoorsOpen { get; set; }
         void Start()
         {
             VinylPickUpEast = false;
@@ -22,6 +30,14 @@ namespace Assets.Scripts
             VinylPickUpSouth = false;
             VinylPickUpWest = false;
             InvisibilityMode = false;
+            PicturesPastPuzzleSolved = false;
+            PicturesPresentPuzzleSolved = false;
+            SafePuzzleSolved = false;
+            PianoPuzzleSolved = false;
+            CraftedInvisiblityFlask = false;
+            GramophonePuzzle = false;
+            AreDoorsOpen = false;
         }
+
     }
 }

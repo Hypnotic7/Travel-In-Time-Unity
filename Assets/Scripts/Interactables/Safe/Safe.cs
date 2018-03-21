@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -44,7 +45,7 @@ namespace Interactables.Safe
 
         public override void Interact()
         {
-            if (!IsSafeOpen)
+            if (!IsSafeOpen && !GameplayChecker.SafePuzzleSolved)
             {
                 InteractableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
                 InteractableManager.safeInteraction = this.gameObject;
@@ -78,8 +79,17 @@ namespace Interactables.Safe
             }
             else
             {
-                SafeDoors.Rotate(new Vector3(0f, 0f, 99.192f));
-                IsSafeOpen = false;
+                if (IsSafeOpen)
+                {
+                    SafeDoors.Rotate(new Vector3(0f, 0f, 99.192f));
+                    IsSafeOpen = false;
+                }
+                
+                else
+                {
+                    SafeDoors.Rotate(new Vector3(0f, 0f, -99.192f));
+                    IsSafeOpen = true;
+                }
             }
            
 
@@ -105,7 +115,8 @@ namespace Interactables.Safe
                         doors.Rotate(new Vector3(0f, 0f, -99.192f));
                         timeStamp = Time.time + coolDownPeriodInSeconds;
                         IsSafeOpen = true;
-                        safeText.text = "Correct Pin Number";
+                        IsCoolingDown = true;
+                        safeText.text = "You have successfully solved the puzzle. The window will close in 3 seconds.";
                         
                         var inv = GameObject.Find("Inventory").GetComponent<Inventory>();
                         if (!inv.items.Exists(f => f.ID == 2))
@@ -113,6 +124,7 @@ namespace Interactables.Safe
                             inv.AddItem(2);
                         }
                         Debug.Log("Correct Pin");
+                        GameplayChecker.SafePuzzleSolved = true;
 
                     }
                     else if (SafePinNumber.LengthOfCurrentString() == 4)
@@ -128,7 +140,7 @@ namespace Interactables.Safe
                             timeStamp = Time.time + coolDownPeriodInSeconds;
                             IsCoolingDown = true;
 
-                            safeText.text = "Incorrect Pin Number";
+                            safeText.text = "Pin number is incorrect. The puzzle will restart in 3 seconds.";
                         }
                     }
                     
@@ -143,32 +155,51 @@ namespace Interactables.Safe
             {
                 if (timeStamp <= Time.time)
                 {
-                    foreach (var pinNumberObject in PinNumbersObjects)
+                    if (GameplayChecker.SafePuzzleSolved)
                     {
-                        pinNumberObject.transform.GetChild(0).GetComponent<Text>().text = string.Empty;
+                        Clean();
+                        Destroy(GameObject.Find("Safe_Interaction_Panel(Clone)"));
+                        GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow
+                            .SetActive(false);
+                        IsCoolingDown = false;
+
                     }
-                    var safeText = GameObject.Find("SafeText").gameObject.GetComponent<Text>();
-                    safeText.text = "Decode safe with 4 different Numbers";
-                    Clean();
-                    IsCoolingDown = false;
+                    else
+                    {
+                        foreach (var pinNumberObject in PinNumbersObjects)
+                        {
+                            pinNumberObject.transform.GetChild(0).GetComponent<Text>().text = string.Empty;
+                        }
+                        var safeText = GameObject.Find("SafeText").gameObject.GetComponent<Text>();
+                        safeText.text = "Decode safe with 4 different numbers. Take a look around have you seen anything suspicious?";
+                        Clean();
+                        IsCoolingDown = false;
+                    }
+
+                    
+                    
                 }
             }
         }
 
         public void Clean()
         {
-            for (int i = 0; i < PinNumbersObjects.Count; i++)
+            if (PinNumbersObjects != null)
             {
-                PinNumbersObjects[i].transform.GetComponent<Image>().color = Color.white;
+                for (int i = 0; i < PinNumbersObjects.Count; i++)
+                {
+                    PinNumbersObjects[i].transform.GetComponent<Image>().color = Color.white;
 
-                this.SafePinNumber.PinNumbers[i] = 0;
-            }
+                    this.SafePinNumber.PinNumbers[i] = 0;
+                }
 
-            if (IsSafeOpen)
-            {
-                Destroy(GameObject.Find("Safe_Interaction_Panel(Clone)"));
-                GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);
+                if (IsSafeOpen)
+                {
+                    Destroy(GameObject.Find("Safe_Interaction_Panel(Clone)"));
+                    GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);
+                }
             }
+           
         }
 
         public void CoolingDown()

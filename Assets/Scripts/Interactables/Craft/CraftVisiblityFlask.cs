@@ -61,7 +61,7 @@ namespace Assets.Scripts.Interactables.Craft
         {
             removeItemsThatWasNeeded();
             GameObject.Find("Inventory").GetComponent<Inventory>().AddItem(rewardID);
-            
+            GameplayChecker.CraftedInvisiblityFlask = true;
             Destroy(GameObject.Find("Craft_Interaction_Panel(Clone)"));
             GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);
 
