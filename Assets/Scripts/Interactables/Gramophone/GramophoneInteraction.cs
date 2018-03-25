@@ -64,7 +64,7 @@ namespace Assets.Scripts.Interactables.Gramophone
         }
         private void reward(int itemID)
         {
-            GameObject.Find("Inventory").GetComponent<Inventory>().AddItem(itemID);
+            GameObject.Find("Inventory").GetComponent<Inventory.Inventory>().AddItem(itemID);
         }
 
         private void Clean()

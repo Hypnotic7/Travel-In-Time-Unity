@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Inventory;
 using UnityEngine;
 
 namespace Interactables

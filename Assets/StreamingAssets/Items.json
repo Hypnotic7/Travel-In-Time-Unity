@@ -5,6 +5,7 @@
     "value": 6,
     "stackable": false,
     "slug": "pocket_watch",
+    "description":  "Old pocket time watch allows to travel in time", 
     "cooldown_in_seconds": 5
   },
   {
@@ -13,14 +14,16 @@
     "value": 400,
     "stackable": false,
     "slug": "great_stick",
+    "description": "",
     "cooldown_in_seconds": 0
   },
   {
     "id": 2,
-    "title": "Key 3030",
+    "title": "Key Door 1",
     "value": 100,
     "stackable": true,
     "slug": "key_room_1",
+    "description": "Key to the doors in room 1",
     "cooldown_in_seconds": 0
   },
   {
@@ -29,6 +32,7 @@
     "value": 100,
     "stackable": true,
     "slug": "key_chest_1",
+    "description": "Key to the chest in room 1",
     "cooldown_in_seconds": 0
   },
   {
@@ -37,6 +41,7 @@
     "value": 100,
     "stackable": true,
     "slug": "piece_of_map_1",
+    "description": "Upcoming Feature for Map",
     "cooldown_in_seconds": 0
   },
   {
@@ -45,6 +50,7 @@
     "value": 1000,
     "stackable": false,
     "slug": "scroll_elixir",
+    "description": "Scheme that teaches how to craft invisibility flask",
     "cooldown_in_seconds": 0
   },
   {
@@ -53,6 +59,7 @@
     "value": 1000,
     "stackable": false,
     "slug": "empty_flask",
+    "description": "Allows to refill the flask with a liquid",
     "cooldown_in_seconds": 0
   },
   {
@@ -61,6 +68,7 @@
     "value": 1000,
     "stackable": false,
     "slug": "wine_flask",
+    "description": "Wine is required to craft visibility flask",
     "cooldown_in_seconds": 0
   },
   {
@@ -69,6 +77,7 @@
     "value": 1000,
     "stackable": false,
     "slug": "visibility_flask",
+    "description": "Changes the perspective visibility on the light colors",
     "cooldown_in_seconds": 2
   },
   {
@@ -77,6 +86,7 @@
     "value": 1000,
     "stackable": true,
     "slug": "vinyl_red",
+    "description": "Vinyl records which are required to activate puzzle",
     "cooldown_in_seconds": 0
   },
   {
@@ -85,22 +95,25 @@
     "value": 1000,
     "stackable": false,
     "slug": "key_chest_2",
+    "description": "Key to the chest in room 2",
     "cooldown_in_seconds": 0
   },
   {
     "id": 11,
-    "title": "Key Chest 1 Part 1",
+    "title": "Part of Key 1",
     "value": 1000,
     "stackable": false,
     "slug": "key_chest_1_part_1",
+    "description": "First part of key to chest in room 1",
     "cooldown_in_seconds": 0
   },
   {
     "id": 12,
-    "title": "Key Chest 1 Part 2",
+    "title": "Part of Key 2",
     "value": 1000,
     "stackable": false,
     "slug": "key_chest_1_part_2",
+    "description": "Second part of key to chest in room 1",
     "cooldown_in_seconds": 0
   },
   {
@@ -109,6 +122,7 @@
     "value": 1000,
     "stackable": false,
     "slug": "piece_of_puzzle",
+    "description": "Contains description",
     "cooldown_in_seconds": 0
   }
 ]

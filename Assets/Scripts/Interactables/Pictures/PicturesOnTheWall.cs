@@ -39,7 +39,7 @@ namespace Assets.Scripts.Interactables.Pictures
         }
         public override void Interact()
         {
-            var inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+            var inv = GameObject.Find("Inventory").GetComponent<Inventory.Inventory>();
             if (inv != null)
             {
                 Debug.Log(GameObject.Find("GameManager").GetComponent<GameManager>().currentTime);

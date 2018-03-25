@@ -1,123 +1,131 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Items;
 using Items;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+namespace Assets.Scripts.Inventory
 {
-    public GameObject inventoryPanel;
-    public GameObject slotPanel;
-    public ItemDatabase database;
-
-    public GameObject inventorySlot;
-    public GameObject inventoryItem;
-
-    public const int slotAmount = 7;
-    public List<Item> items = new List<Item>();
-    public List<GameObject> slots = new List<GameObject>(); 
-
-	// Use this for initialization
-	void Start ()
-	{
-        
-	    database = GetComponent<ItemDatabase>();
-        
-	    inventoryPanel = GameObject.Find("Inventory");
-
-        for (int i = 0; i < slotAmount; i++)
-	    {
-            items.Add(new Item());
-	        slots.Add(Instantiate(inventorySlot));
-	        slots[i].GetComponent<Slot>().id = i;
-            slots[i].transform.SetParent(inventoryPanel.transform,false);
-	    }
-
-
-        AddItem(0);
-    }
-
-    public void AddItem(int id)
+    public class Inventory : MonoBehaviour
     {
-        Item itemToAdd = database.FetchItemByID(id);
+        public GameObject inventoryPanel;
+        public GameObject slotPanel;
+        public ItemDatabase database;
 
-        if (itemToAdd.Stackable && CheckForItemInInventory(itemToAdd))
+        public GameObject inventorySlot;
+        public GameObject inventoryItem;
+
+        public const int slotAmount = 7;
+        public List<Item> items = new List<Item>();
+        public List<GameObject> slots = new List<GameObject>();
+
+        // Use this for initialization
+        void Start()
         {
-            for (int j = 0; j < items.Count; j++)
+
+            database = GetComponent<ItemDatabase>();
+
+            inventoryPanel = GameObject.Find("Inventory");
+            int controlNumber;
+            for (int i = 0; i < slotAmount; i++)
             {
-                if (items[j].ID == id)
+                controlNumber = i + 1;
+                items.Add(new Item());
+                slots.Add(Instantiate(inventorySlot));
+                slots[i].GetComponent<Slot>().id = i;
+                slots[i].transform.SetParent(inventoryPanel.transform, false);
+                slots[i].transform.GetChild(0).transform.GetChild(0).GetComponent<TMP_Text>().text = controlNumber.ToString();
+            }
+
+
+            AddItem(0);
+        }
+
+        public void AddItem(int id)
+        {
+            Debug.Log(database);
+            Item itemToAdd = database.FetchItemByID(id);
+            Debug.Log(itemToAdd);
+            if (itemToAdd.Stackable && CheckForItemInInventory(itemToAdd))
+            {
+                for (int j = 0; j < items.Count; j++)
                 {
-                    ItemData data = slots[j].transform.GetChild(0).GetComponent<ItemData>();
-                    data.amount++;
-                    data.transform.GetChild(0).GetComponent<Text>().text = data.amount.ToString();
-                    break;
+                    if (items[j].ID == id)
+                    {
+                        ItemData data = slots[j].transform.GetChild(1).GetComponent<ItemData>();
+                        data.amount++;
+                        data.transform.GetChild(0).GetComponent<Text>().text = data.amount.ToString();
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < items.Count; i++)
+                {
+                    if (items[i].ID == -1)
+                    {
+                        items[i] = itemToAdd;
+
+                        GameObject itemObj = Instantiate(inventoryItem);
+                        itemObj.GetComponent<ItemData>().item = itemToAdd;
+                        itemObj.GetComponent<ItemData>().amount = 1;
+                        itemObj.GetComponent<ItemData>().slot = i;
+                        itemObj.transform.SetParent(slots[i].transform);
+                        itemObj.transform.localPosition = Vector2.zero;
+                        itemObj.GetComponent<Image>().sprite = itemToAdd.Sprite;
+                        itemObj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                        itemObj.name = itemToAdd.Title;
+                        break;
+                    }
                 }
             }
         }
-        else
+
+        public void RemoveItem(int id)
         {
+            Item itemToRemove = database.FetchItemByID(id);
+
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].ID == -1)
+                if (items[i] == itemToRemove)
                 {
-                    items[i] = itemToAdd;
+                    var index = items.IndexOf(itemToRemove);
 
-                    GameObject itemObj = Instantiate(inventoryItem);
-                    itemObj.GetComponent<ItemData>().item = itemToAdd;
-                    itemObj.GetComponent<ItemData>().amount = 1;
-                    itemObj.GetComponent<ItemData>().slot = i;
-                    itemObj.transform.SetParent(slots[i].transform);
-                    itemObj.transform.localPosition = Vector2.zero;
-                    itemObj.GetComponent<Image>().sprite = itemToAdd.Sprite;
-                    itemObj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-                    itemObj.name = itemToAdd.Title;
-                    break;
-                }
-            }
-        }
-    }
-
-    public void RemoveItem(int id)
-    {
-        Item itemToRemove = database.FetchItemByID(id);
-
-        for (int i = 0; i < items.Count; i++)
-        {
-            if (items[i] == itemToRemove)
-            {
-                var index = items.IndexOf(itemToRemove);
-
-                if (index != -1)
-                {
-                    items[i] = new Item();
-                }
-
-                for (int j = 0; j < slots.Count; j++)
-                {
-                    if (slots[i].GetComponent<Slot>().transform.GetChild(0) != null)
+                    if (index != -1)
                     {
-                        var item = slots[i].GetComponent<Slot>().transform.GetChild(0);
-                        if (item != null)
+                        items[i] = new Item();
+                    }
+
+                    for (int j = 0; j < slots.Count; j++)
+                    {
+                        if (slots[i].GetComponent<Slot>().transform.GetChild(1) != null)
                         {
-                            if (item.GetComponent<ItemData>().item.ID == itemToRemove.ID)
+                            var item = slots[i].GetComponent<Slot>().transform.GetChild(1);
+                            if (item != null)
                             {
-                                Debug.Log("Item destroyed" + item.GetComponent<ItemData>().item.ID);
-                                Destroy(slots[i].transform.GetChild(0).gameObject);
+                                Debug.Log(item.GetComponent<ItemData>().item.ID);
+                                if (item.GetComponent<ItemData>().item.ID == itemToRemove.ID)
+                                {
+                                    Debug.Log("Item destroyed" + item.GetComponent<ItemData>().item.ID);
+                                    Destroy(slots[i].transform.GetChild(1).gameObject);
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
 
-    public bool CheckForItemInInventory(Item item)
-    {
-        for (int i = 0; i < items.Count; i++)
+        public bool CheckForItemInInventory(Item item)
         {
-            if (items[i].ID == item.ID)
-                return true;
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].ID == item.ID)
+                    return true;
+            }
+            return false;
         }
-        return false;
     }
 }

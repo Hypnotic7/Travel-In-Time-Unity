@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Wilberforce;
 
 namespace Assets.Scripts
@@ -17,6 +19,7 @@ namespace Assets.Scripts
         public GameObject EventSystem;
         public GameObject AudioSystem;
         public GameObject GameplayCheckerObj;
+        public Image LoadingSpiral;
 
 
         // Use this for initialization
@@ -58,6 +61,9 @@ namespace Assets.Scripts
             {
                 Instantiate(AudioSystem);
             }
+
+            if (GameObject.Find("GUI(Clone)").transform.GetChild(3).gameObject.activeSelf)
+                GameObject.Find("GUI(Clone)").transform.GetChild(3).gameObject.SetActive(false);
 
 
             if (GameplayChecker.InvisibilityMode)
@@ -102,7 +108,10 @@ namespace Assets.Scripts
 
         public void LoadScene(string sceneName)
         {
-            SceneManager.LoadScene(sceneName);
+            GameObject.Find("GUI(Clone)").transform.GetChild(3).gameObject.SetActive(true);
+            StartCoroutine(Rotate(3));
+
+            SceneManager.LoadSceneAsync(sceneName);
             DontDestroyOnLoad(GameObject.Find("GameplayChecker(Clone)"));
             DontDestroyOnLoad(GameObject.Find("GUI(Clone)"));
             DontDestroyOnLoad(GameObject.Find("Main Camera(Clone)"));
@@ -110,6 +119,20 @@ namespace Assets.Scripts
             DontDestroyOnLoad(GameObject.Find("EventSystem(Clone)"));
             DontDestroyOnLoad(GameObject.Find("Audio(Clone)"));
             
+        }
+
+        IEnumerator Rotate(float duration)
+        {
+            float startRotation = transform.eulerAngles.z;
+            float endRotation = startRotation + 360.0f;
+            float t = 0.0f;
+            while (t < duration)
+            {
+                t += Time.deltaTime;
+                float zRotation = Mathf.Lerp(startRotation, endRotation, t / duration) % 360.0f;
+                GameObject.Find("Spiral").transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
+                yield return null;
+            }
         }
     }
 }

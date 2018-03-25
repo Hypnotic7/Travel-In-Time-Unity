@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,8 +43,9 @@ namespace Assets.Scripts.Items
 
         public void ConstructDataString()
         {
-            data = "<color=#000000>" + item.Title + "</color>\n\n" + item.ID + "";
-            tooltip.transform.GetChild(0).GetComponent<Text>().text = data;
+            data = "<color=#000000>" + item.Title + "</color>";
+            tooltip.transform.GetChild(0).GetComponent<TMP_Text>().text = data;
+            tooltip.transform.GetChild(1).GetComponent<TMP_Text>().text = item.Description;
 
         }
     }

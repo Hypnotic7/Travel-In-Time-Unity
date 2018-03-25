@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts;
+using Assets.Scripts.Inventory;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -188,7 +189,7 @@ namespace Interactables.Safe
             {
                 for (int i = 0; i < PinNumbersObjects.Count; i++)
                 {
-                    PinNumbersObjects[i].transform.GetComponent<Image>().color = Color.white;
+                   PinNumbersObjects[i].transform.GetComponent<Image>().color = Color.white;
 
                     this.SafePinNumber.PinNumbers[i] = 0;
                 }

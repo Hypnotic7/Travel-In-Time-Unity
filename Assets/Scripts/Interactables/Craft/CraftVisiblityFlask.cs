@@ -45,7 +45,7 @@ namespace Assets.Scripts.Interactables.Craft
 
         private bool checkInventory(string gameObjectsText)
         {
-            return GameObject.Find("Inventory").GetComponent<Inventory>().items.Exists(f=>f.Title == gameObjectsText);
+            return GameObject.Find("Inventory").GetComponent<Inventory.Inventory>().items.Exists(f=>f.Title == gameObjectsText);
             
         }
 
@@ -53,14 +53,14 @@ namespace Assets.Scripts.Interactables.Craft
         {
             for (int i = 0; i < ingrediantsID.Length; i++)
             {
-                GameObject.Find("Inventory").GetComponent<Inventory>().RemoveItem(ingrediantsID[i]);
+                GameObject.Find("Inventory").GetComponent<Inventory.Inventory>().RemoveItem(ingrediantsID[i]);
             }
         }
 
         public void Reward()
         {
             removeItemsThatWasNeeded();
-            GameObject.Find("Inventory").GetComponent<Inventory>().AddItem(rewardID);
+            GameObject.Find("Inventory").GetComponent<Inventory.Inventory>().AddItem(rewardID);
             GameplayChecker.CraftedInvisiblityFlask = true;
             Destroy(GameObject.Find("Craft_Interaction_Panel(Clone)"));
             GameObject.Find("Interaction").GetComponent<InteractableManager>().interactionWindow.SetActive(false);

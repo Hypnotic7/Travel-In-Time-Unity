@@ -96,7 +96,7 @@ namespace Assets.Scripts.Interactables.Piano
                 IsCoolingDown = true;
             if (solved)
             {
-                var inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+                var inv = GameObject.Find("Inventory").GetComponent<Inventory.Inventory>();
                 if (!inv.items.Exists(f => f.ID == 5))
                 {
                     inv.AddItem(5);

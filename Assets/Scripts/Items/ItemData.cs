@@ -17,7 +17,7 @@ namespace Assets.Scripts.Items
         public int slot;
         
         private Vector2 offset;
-        private Inventory inv;
+        private Inventory.Inventory inv;
         private Tooltip tooltip;
         public string levelToLoad;
         public bool ChangedScenes;
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Items
 
         void Start()
         {
-            inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+            inv = GameObject.Find("Inventory").GetComponent<Inventory.Inventory>();
             tooltip = inv.GetComponent<Tooltip>();
         }
 
@@ -76,87 +76,16 @@ namespace Assets.Scripts.Items
             
                 if (item.ID == 0)
                 {
-                    
-                    GameObject go = GameObject.Find("GameManager");
-                    if (go == null)
-                    {
-                        Debug.LogError("Failed to find an object named 'GameManager'");
-                        this.enabled = false;
-                        return;
-                    }
 
-                    if (PlayerPrefs.GetString("CurrentTime").Equals(string.Empty))
-                    {
-                        PlayerPrefs.SetString("CurrentTime","Past_Time_Test");
-                    }
+                    ActivateTimeWatch();
 
-                    GameManager gm = go.GetComponent<GameManager>();
-                    if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test" || gm.currentTime == "Present_Time")
-                    {
-                       
-                        item.IsCoolingdown = true;
-                        timeStamp = Time.time + item.CooldownInSeconds;
-                        transform.GetComponent<Image>().color = Color.white;
-                        inv.slots[item.ID].GetComponent<Image>().color = Color.yellow;
-                        gm.currentTime = "Past_Time_Test";
-                        gm.LoadScene(gm.currentTime);
-                        
-                    }
-                    else if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" || gm.currentTime == "Past_Time")
-                    {
-                       
-                        item.IsCoolingdown = true;
-                        timeStamp = Time.time + item.CooldownInSeconds;
-                        transform.GetComponent<Image>().color = Color.white;
-                        inv.slots[item.ID].GetComponent<Image>().color = Color.yellow;
-                        gm.currentTime = "Present_Time_Test";
-                        gm.LoadScene(gm.currentTime);
-                        
-
-                    }
-                    
                 }else if (item.ID == 8)
                 {
-                    var colorBlind = GameObject.Find("Main Camera(Clone)").GetComponent<Colorblind>();
-                    colorBlind.enabled = !colorBlind.enabled;
-                    if(PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" && colorBlind.enabled)
-                    {
-                        var vinyls = GameObject.Find("Vinyls").transform;
-                        for (int i = 0; i < vinyls.childCount; i++)
-                        {
-                            vinyls.GetChild(i).gameObject.SetActive(colorBlind.enabled);
-                            GameplayChecker.InvisibilityMode = colorBlind.enabled;
-                        }
-
-                    }
-                    else if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" && !colorBlind.enabled)
-                    {
-                        var vinyls = GameObject.Find("Vinyls").transform;
-                        for (int i = 0; i < vinyls.childCount; i++)
-                        {
-                            vinyls.GetChild(i).gameObject.SetActive(colorBlind.enabled);
-                            GameplayChecker.InvisibilityMode = colorBlind.enabled;
-                        }
-
-                    }
-                    else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
-                    {
-                        var notes = GameObject.Find("Notes").transform;
-                        for (int i = 0; i < notes.childCount; i++)
-                        {
-                            notes.GetChild(i).gameObject.SetActive(colorBlind.enabled);
-                            GameplayChecker.InvisibilityMode = colorBlind.enabled;
-                        }
-                    }
-                    var invisibilityOnOff = colorBlind.enabled ? 1 : 0;
-                    PlayerPrefs.SetInt("Invisibility",invisibilityOnOff);
+                    ActivateInvisibilityFlask();
                 }
                 else if (item.ID == 13)
                 {
-                    var interactableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
-                    if (interactableManager == null) return;
-                    interactableManager.puzzleInteraction = this.gameObject;
-                    interactableManager.Activate("Puzzle");
+                    ActivatePuzzle();
                 }
             }
 
@@ -175,8 +104,95 @@ namespace Assets.Scripts.Items
                 }
             }
         }
-            
 
+        public void ActivateTimeWatch()
+        {
+            if (!item.IsCoolingdown)
+            {
+                GameObject go = GameObject.Find("GameManager");
+                if (go == null)
+                {
+                    Debug.LogError("Failed to find an object named 'GameManager'");
+                    this.enabled = false;
+                    return;
+                }
+
+                if (PlayerPrefs.GetString("CurrentTime").Equals(string.Empty))
+                {
+                    PlayerPrefs.SetString("CurrentTime", "Past_Time_Test");
+                }
+
+                GameManager gm = go.GetComponent<GameManager>();
+                if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test" || gm.currentTime == "Present_Time")
+                {
+
+                    item.IsCoolingdown = true;
+                    timeStamp = Time.time + item.CooldownInSeconds;
+                    transform.GetComponent<Image>().color = Color.white;
+                    inv.slots[item.ID].GetComponent<Image>().color = Color.yellow;
+                    gm.currentTime = "Past_Time_Test";
+                    gm.LoadScene(gm.currentTime);
+
+                }
+                else if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" || gm.currentTime == "Past_Time")
+                {
+
+                    item.IsCoolingdown = true;
+                    timeStamp = Time.time + item.CooldownInSeconds;
+                    transform.GetComponent<Image>().color = Color.white;
+                    inv.slots[item.ID].GetComponent<Image>().color = Color.yellow;
+                    gm.currentTime = "Present_Time_Test";
+                    gm.LoadScene(gm.currentTime);
+
+
+                }
+            }
+        }
+
+        public void ActivateInvisibilityFlask()
+        {
+            var colorBlind = GameObject.Find("Main Camera(Clone)").GetComponent<Colorblind>();
+            colorBlind.enabled = !colorBlind.enabled;
+            if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" && colorBlind.enabled)
+            {
+                var vinyls = GameObject.Find("Vinyls").transform;
+                for (int i = 0; i < vinyls.childCount; i++)
+                {
+                    vinyls.GetChild(i).gameObject.SetActive(colorBlind.enabled);
+                    GameplayChecker.InvisibilityMode = colorBlind.enabled;
+                }
+
+            }
+            else if (PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" && !colorBlind.enabled)
+            {
+                var vinyls = GameObject.Find("Vinyls").transform;
+                for (int i = 0; i < vinyls.childCount; i++)
+                {
+                    vinyls.GetChild(i).gameObject.SetActive(colorBlind.enabled);
+                    GameplayChecker.InvisibilityMode = colorBlind.enabled;
+                }
+
+            }
+            else if (PlayerPrefs.GetString("CurrentTime") == "Present_Time_Test")
+            {
+                var notes = GameObject.Find("Notes").transform;
+                for (int i = 0; i < notes.childCount; i++)
+                {
+                    notes.GetChild(i).gameObject.SetActive(colorBlind.enabled);
+                    GameplayChecker.InvisibilityMode = colorBlind.enabled;
+                }
+            }
+            var invisibilityOnOff = colorBlind.enabled ? 1 : 0;
+            PlayerPrefs.SetInt("Invisibility", invisibilityOnOff);
+        }
+
+        public void ActivatePuzzle()
+        {
+            var interactableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
+            if (interactableManager == null) return;
+            interactableManager.puzzleInteraction = this.gameObject;
+            interactableManager.Activate("Puzzle");
+        }
 
         }
     }

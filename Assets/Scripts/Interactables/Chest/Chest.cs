@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Inventory;
 using UnityEngine;
 
 public class Chest : Interactable
@@ -10,22 +11,22 @@ public class Chest : Interactable
     public int counter;
 
     private Color startcolor;
-	// Use this for initialization
-	void Start () {
-	    IsTriggered = false;
-	    ContainsKey = false;
-	    counter = 0;
+
+    // Use this for initialization
+    void Start()
+    {
+        IsTriggered = false;
+        ContainsKey = false;
+        counter = 0;
     }
+
     void OnMouseEnter()
     {
-        
-            startcolor = transform.parent.GetComponent<Renderer>().material.color;
-            transform.parent.GetComponent<Renderer>().material.color = Color.magenta;
+        startcolor = transform.parent.GetComponent<Renderer>().material.color;
+        transform.parent.GetComponent<Renderer>().material.color = Color.magenta;
         this.GetComponent<Renderer>().material.color = Color.magenta;
-
-
-
     }
+
     void OnMouseExit()
     {
         transform.parent.GetComponent<Renderer>().material.color = startcolor;
@@ -50,11 +51,9 @@ public class Chest : Interactable
                 {
                     ContainsKey = true;
                 }
-
             }
         }
         return ContainsKey;
-
     }
 
     public override void Interact()
@@ -73,7 +72,7 @@ public class Chest : Interactable
                     {
                         Debug.Log("Chest Open: " + OpenClose);
 
-                        transform.Rotate(60,0 , 0, Space.Self);
+                        transform.Rotate(60, 0, 0, Space.Self);
                         OpenClose = !OpenClose;
                         if (gameObject.name == "Chest_Lid1")
                         {
@@ -81,11 +80,10 @@ public class Chest : Interactable
                             {
                                 inv.AddItem(4);
                             }
-                            
                         }
                         else if (gameObject.name == "Chest_Lid2")
                         {
-                            if(!inv.items.Exists(f => f.ID == 13))
+                            if (!inv.items.Exists(f => f.ID == 13))
                                 inv.AddItem(13);
                         }
                     }
@@ -109,8 +107,6 @@ public class Chest : Interactable
                     counter++;
                 }
             }
-
         }
     }
-
 }

@@ -43,7 +43,7 @@ namespace Assets.Scripts.Interactables.Gramophone
 
         private void reward(int itemID)
         {
-            GameObject.Find("Inventory").GetComponent<Inventory>().AddItem(itemID);
+            GameObject.Find("Inventory").GetComponent<Inventory.Inventory>().AddItem(itemID);
         }
 
         private void deactivateAndActivate(string interaction)
@@ -55,18 +55,18 @@ namespace Assets.Scripts.Interactables.Gramophone
 
         private void removeItemsThatWasNeeded()
         {
-            GameObject.Find("Inventory").GetComponent<Inventory>().RemoveItem(RequirementID);
+            GameObject.Find("Inventory").GetComponent<Inventory.Inventory>().RemoveItem(RequirementID);
         }
 
         private bool CheckForAmount(int amount)
         {
-            var inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+            var inv = GameObject.Find("Inventory").GetComponent<Inventory.Inventory>();
 
             for (int i = 0; i < inv.items.Count; i++)
             {
                 if (inv.items[i].ID == RequirementID)
                 {
-                    ItemData data = inv.slots[i].transform.GetChild(0).GetComponent<ItemData>();
+                    ItemData data = inv.slots[i].transform.GetChild(1).GetComponent<ItemData>();
                     if (data.amount == amount) break;
                     return false;
                 }
@@ -78,7 +78,7 @@ namespace Assets.Scripts.Interactables.Gramophone
         private bool CheckInventory(string requirementText)
         {
 
-            return GameObject.Find("Inventory").GetComponent<Inventory>().items.Exists(f => f.Title == requirementText);    
+            return GameObject.Find("Inventory").GetComponent<Inventory.Inventory>().items.Exists(f => f.Title == requirementText);    
         }
 
 
