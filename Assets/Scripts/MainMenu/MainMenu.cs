@@ -18,7 +18,9 @@ public class MainMenu : MonoBehaviour
         Destroy(GameObject.Find("GUI(Clone)"));
         Destroy(GameObject.Find("Main Camera(Clone)"));
         Destroy(GameObject.Find("Character(Clone)"));
-        
+        Resolution resolution = Screen.currentResolution;
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+
     }
     public void PlayGame()
     {

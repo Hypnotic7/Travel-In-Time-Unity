@@ -53,7 +53,7 @@ namespace Assets.Scripts.PauseMenu
         public void LoadMainMenu()
         {
             Time.timeScale = 1f;
-            if (!GameplayChecker.EmptyFlaskPickedUp)
+            if (GameplayChecker.EmptyFlaskPickedUp && PlayerPrefs.GetString("CurrentTime") == "Past_Time_Test" || GameObject.Find("GameManager").GetComponent<GameManager>().currentTime == "Past_Time_Test")
                 GameObject.Find("Flask").SetActive(true);
 
             cleanGameplayChecker();
