@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -22,8 +23,8 @@ namespace Assets.Scripts.Interactables.Piano
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log(this.transform.GetChild(0).GetComponent<Text>().text);
             string numberKeyClicked = this.gameObject.name.Substring(8);
+            Debug.Log("KeyClickedHEYEY: " + numberKeyClicked);
 
             if (numberKeyClicked.Length == 3)
             {
@@ -36,10 +37,12 @@ namespace Assets.Scripts.Interactables.Piano
             else
             {
                 int.TryParse(numberKeyClicked, out keyClicked);
+
             }
-            
             piano.DisplayOutput(keyClicked);
-            
+
+
+
         }
     }
 }

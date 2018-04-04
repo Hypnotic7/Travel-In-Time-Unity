@@ -19,7 +19,7 @@ public class SettingsMenu : MonoBehaviour
     {
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
-
+        QualitySettings.SetQualityLevel(3);
         List<string> options = new List<string>();
         
         int currentResolutionIndex = 0;
@@ -27,7 +27,6 @@ public class SettingsMenu : MonoBehaviour
         for (int i =0;i < resolutions.Length;i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
-            if(!resolutionDropdown.options.Exists(f => f.text == option))
                 options.Add(option);
 
             if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
@@ -42,7 +41,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat("volume", (volume/ 2.1f));
         Debug.Log(volume);
     }
 

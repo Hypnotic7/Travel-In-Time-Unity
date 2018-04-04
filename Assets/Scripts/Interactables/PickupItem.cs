@@ -63,8 +63,11 @@ public class PickupItem : Interactable
         {
             inventory.AddItem(ItemID);
             if (ItemID == 6)
+            {
                 GameplayChecker.EmptyFlaskPickedUp = true;
-                Destroy(GameObject.Find("Flask"));
+                GameObject.Find("Flask").SetActive(false);
+            }
+                
             if (ItemID == 9)
             {
                 if (gameObject.name == "vinyl")

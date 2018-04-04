@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.Audio;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,8 +33,10 @@ namespace Assets.Scripts.Interactables.Piano
                 for (int i = 0; i < pianoKeys.Length; i++)
                 {
                     pianoKeys[i] = GameObject.Find("PianoKeysPanel").transform.GetChild(i).gameObject;
-                    outputValuesPianoKeys[i] = pianoKeys[i].transform.GetChild(0).GetComponent<Text>().text;
-                    pianoKeys[i].transform.GetChild(0).GetComponent<Text>().enabled = false;
+                    Debug.Log(pianoKeys[i].transform.GetChild(0).GetComponent<TMP_Text>().text);
+                    outputValuesPianoKeys[i] = pianoKeys[i].transform.GetChild(0).GetComponent<TMP_Text>().text;
+                    pianoKeys[i].transform.GetChild(0).GetComponent<TMP_Text>().enabled = false;
+                    Debug.Log(audioClips[i].name);
                 }
 
                 if (GameObject.Find("PianoOutputPanel") != null)
@@ -50,16 +53,20 @@ namespace Assets.Scripts.Interactables.Piano
 
         public void DisplayOutput(int keyNumber)
         {
-            audioSource.clip = audioClips[keyNumber - 1];
+            Debug.Log("Keynumber" + keyNumber);
+           audioSource.clip = audioClips[keyNumber - 1];
+            Debug.Log("KeyNUMBER"+ (keyNumber-1));
+            Debug.Log(audioSource.clip.name);
 
             Play();
             for (int i = 0; i < outputButtons.Length; i++)
             {
-                if (outputButtons[i].transform.GetChild(0).GetComponent<Text>().text.Equals(string.Empty))
+                if (outputButtons[i].transform.GetChild(0).GetComponent<TMP_Text>().text.Equals(string.Empty))
                 {
                     if (inputValues[i].Equals(string.Empty))
                     {
-                        outputButtons[i].transform.GetChild(0).GetComponent<Text>().text =
+                        Debug.Log(audioSource.clip.name.Substring(5));
+                        outputButtons[i].transform.GetChild(0).GetComponent<TMP_Text>().text =
                             audioSource.clip.name.Substring(5);
                       
                             inputValues[i] = audioSource.clip.name.Substring(5);
@@ -89,7 +96,7 @@ namespace Assets.Scripts.Interactables.Piano
                 
             }
 
-            pianoText.GetComponent<Text>().text = solved ? "You have played the melody in correct order. The window will close in 3 seconds." :
+            pianoText.GetComponent<TMP_Text>().text = solved ? "You have played the melody in correct order. The window will close in 3 seconds." :
                                                            "Unfortunately, the melody that you have played is incorrect. The puzzle will restart in 3 seconds.";
             
                 timeStamp = Time.time + coolDownPeriodInSeconds;
@@ -135,12 +142,12 @@ namespace Assets.Scripts.Interactables.Piano
 
         private void Clean()
         {
-            pianoText.GetComponent<Text>().text = "Play the sound with the keyboard in correct sequence. Some interactive objects are disabled and need to be activated.";
+            pianoText.GetComponent<TMP_Text>().text = "Play the sound with the keyboard in correct sequence. Some interactive objects are disabled and need to be activated.";
             for (int i = 0; i < inputValues.Length; i++)
             {
                 inputValues[i] = string.Empty;
                 outputButtons[i].GetComponent<Image>().color = Color.white;
-                outputButtons[i].transform.GetChild(0).GetComponent<Text>().text = string.Empty;
+                outputButtons[i].transform.GetChild(0).GetComponent<TMP_Text>().text = string.Empty;
             }
         }
 

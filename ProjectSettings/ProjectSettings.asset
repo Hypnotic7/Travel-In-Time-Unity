@@ -6,7 +6,7 @@ PlayerSettings:
   serializedVersion: 12
   productGUID: c7dff6e00343d6f40a4034355badcd70
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 2
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -138,8 +138,8 @@ PlayerSettings:
       depthFormat: 1
   protectGraphicsMemory: 0
   useHDRDisplay: 0
-  targetPixelDensity: 0
-  resolutionScalingMode: 0
+  targetPixelDensity: 200
+  resolutionScalingMode: 1
   applicationIdentifier:
     Android: com.Ninjitsu.TravelInTime
   buildNumber: {}

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114326315551532490}
   - component: {fileID: 82711177735708330}
   - component: {fileID: 114731083431892046}
+  - component: {fileID: 165513804766946008}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -54,8 +55,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
-  m_Pitch: 1
+  m_Volume: 0.85
+  m_Pitch: 0.86
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -110,7 +111,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -153,3 +154,12 @@ MonoBehaviour:
   MusicSource: {fileID: 82711177735708330}
   isPlaying: 0
   Interacted: 0
+--- !u!165 &165513804766946008
+AudioHighPassFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212079013598616}
+  m_Enabled: 1
+  m_CutoffFrequency: 450
+  m_HighpassResonanceQ: 1

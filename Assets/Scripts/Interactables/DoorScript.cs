@@ -17,21 +17,30 @@ namespace Interactables
         // Use this for initialization
         void Start ()
         {
+            Debug.Log("Hello I am here");
             IsTriggered = false;
             ContainsKey = false;
             counter = 0;
 
-            if(!GameplayChecker.AreDoorsOpen && GameplayChecker.SafePuzzleSolved)
+            if (!GameplayChecker.AreDoorsOpen && GameplayChecker.SafePuzzleSolved && GameplayChecker.FirstTimeOpened)
+            {
+                //if (transform.rotation.y > -90)
+                //    CloseDoors();
+                ContainsKey = true;
+                OpenClose = false;
+                counter++;
+            }
+            else if (GameplayChecker.AreDoorsOpen && GameplayChecker.SafePuzzleSolved)
+            {
                 OpenDoors();
-            else if(GameplayChecker.AreDoorsOpen && GameplayChecker.SafePuzzleSolved)
-                CloseDoors();
-                    
-            
+                OpenClose = true;
+                counter++;
+            }
+               
         }
 
         void OnMouseEnter()
         {
-
             startcolor = this.GetComponent<Renderer>().material.color;
             this.GetComponent<Renderer>().material.color = Color.magenta;
             
@@ -39,7 +48,6 @@ namespace Interactables
         void OnMouseExit()
         {
             this.GetComponent<Renderer>().material.color = startcolor;
-           
         }
 
         public bool CheckForKey()
@@ -73,16 +81,16 @@ namespace Interactables
                 {
                     if (ContainsKey)
                     {
-                        if (OpenClose && counter != 0)
+                        if (GameplayChecker.AreDoorsOpen && counter != 0)
                         {
                             Debug.Log("Doors Open: " + OpenClose);
-                            OpenDoors();
+                            CloseDoors();
 
                         }
-                        else if (!OpenClose)
+                        else if (!GameplayChecker.AreDoorsOpen)
                         {
                             Debug.Log("Doors Closed: " + OpenClose);
-                            CloseDoors();
+                            OpenDoors();
 
                         }
                         counter++;
@@ -94,20 +102,22 @@ namespace Interactables
 
         private void OpenDoors()
         {
-            transform.Rotate(0, -90, 0, Space.Self);
+            transform.Rotate(0, 90, 0, Space.Self);
             transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
             OpenClose = !OpenClose;
             IsTriggered = false;
-            GameplayChecker.AreDoorsOpen = OpenClose;
+            GameplayChecker.FirstTimeOpened = true;
+            GameplayChecker.AreDoorsOpen = true;
+            
         }
 
         private void CloseDoors()
         {
-            transform.Rotate(0, 90, 0, Space.Self);
+            transform.Rotate(0, -90, 0, Space.Self);
             transform.localScale = new Vector3(0.7f, transform.localScale.y, transform.localScale.z);
             OpenClose = !OpenClose;
             IsTriggered = false;
-            GameplayChecker.AreDoorsOpen = OpenClose;
+            GameplayChecker.AreDoorsOpen = false;
         }
     }
            

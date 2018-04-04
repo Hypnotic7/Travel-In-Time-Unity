@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -16,8 +17,8 @@ namespace Interactables.Safe
         
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log(this.transform.GetChild(0).GetComponent<Text>().text);
-            int.TryParse(this.transform.GetChild(0).GetComponent<Text>().text, out numberClicked);
+            Debug.Log(this.transform.GetChild(0).GetComponent<TMP_Text>().text);
+            int.TryParse(this.transform.GetChild(0).GetComponent<TMP_Text>().text, out numberClicked);
             safe.DisplayPinNumbers(numberClicked);
         }
     }

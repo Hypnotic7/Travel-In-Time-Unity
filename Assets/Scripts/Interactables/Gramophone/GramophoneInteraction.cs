@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ namespace Assets.Scripts.Interactables.Gramophone
         public List<Sprite> sprites;
         public List<GameObject> vinylButtons;
         public List<GameObject> outputSlots;
-        public Text GramophoneText;
+        public TMP_Text GramophoneText;
         private int[] input = new int[4];
         public const string Answer = "3241";
         private float timeStamp;

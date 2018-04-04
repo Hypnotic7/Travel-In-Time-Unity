@@ -23,6 +23,7 @@ namespace Assets.Scripts
         public static bool GramophonePuzzle { get; set; }
         public static bool EmptyFlaskPickedUp { get; set; }
         public static bool AreDoorsOpen { get; set; }
+        public static bool FirstTimeOpened { get; set; }
         void Start()
         {
             VinylPickUpEast = false;
@@ -36,7 +37,9 @@ namespace Assets.Scripts
             PianoPuzzleSolved = false;
             CraftedInvisiblityFlask = false;
             GramophonePuzzle = false;
+            EmptyFlaskPickedUp = false;
             AreDoorsOpen = false;
+            FirstTimeOpened = false;
         }
 
     }

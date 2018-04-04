@@ -146,6 +146,9 @@ namespace Assets.Scripts.Items
 
 
                 }
+              DisableInteractionWindow disable = new DisableInteractionWindow();
+                disable.OnPointerClick(new PointerEventData(EventSystem.current));
+                
             }
         }
 

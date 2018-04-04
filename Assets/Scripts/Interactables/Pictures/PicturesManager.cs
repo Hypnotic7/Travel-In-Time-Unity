@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ namespace Assets.Scripts.Interactables.Pictures
 
         public List<PictureSlot> PictureSlots = new List<PictureSlot>();
         public List<Picture> Pictures = new List<Picture>();
-        public Text PicturesText;
+        public TMP_Text PicturesText;
 
         public int Counter;
         private bool isCoolingDown = false;
@@ -161,7 +162,7 @@ namespace Assets.Scripts.Interactables.Pictures
         {
             PicturePanel = GameObject.Find("PicturesPanel");
             InteractableManager = GameObject.Find("Interaction").GetComponent<InteractableManager>();
-            PicturesText = GameObject.Find("PicturesText").GetComponent<Text>();
+            PicturesText = GameObject.Find("PicturesText").GetComponent<TMP_Text>();
 
             for (int i = 0; i < 3; i++)
             {

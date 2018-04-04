@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.Items;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -28,7 +29,7 @@ namespace Assets.Scripts.Interactables.Gramophone
             var counter = 0;
             if (RequirementObject.transform.GetChild(1) != null)
             {
-                var requirementText = RequirementObject.transform.GetChild(1).GetComponent<Text>().text.Substring(0,5);
+                var requirementText = RequirementObject.transform.GetChild(1).GetComponent<TMP_Text>().text.Substring(0,5);
                 var contains = CheckInventory(requirementText);
                 if (!contains) return false;
                 contains = CheckForAmount(Amount);

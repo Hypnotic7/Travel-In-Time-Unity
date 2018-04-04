@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts;
 using Assets.Scripts.Inventory;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ namespace Interactables.Safe
         public List<Transform> PinNumbersObjects;
         public bool IsSafeOpen = false;
         public Transform SafeDoors;
-        public Text SafeText;
+        public TMP_Text SafeText;
         private float timeStamp;
         private bool IsCoolingDown = false;
         private const int coolDownPeriodInSeconds = 3;
@@ -101,10 +102,10 @@ namespace Interactables.Safe
             foreach (var pinNumbersObject in PinNumbersObjects)
             {
 
-                var pinNumberText = pinNumbersObject.transform.GetChild(0).GetComponent<Text>();
+                var pinNumberText = pinNumbersObject.transform.GetChild(0).GetComponent<TMP_Text>();
                 if (pinNumberText.text.Equals(string.Empty))
                 {
-                    var safeText = GameObject.Find("SafeText").gameObject.GetComponent<Text>();
+                    var safeText = GameObject.Find("SafeText").gameObject.GetComponent<TMP_Text>();
                     pinNumberText.text = number.ToString();
                     if (SafePinNumber.UpdatePinNumber(number))
                     {
@@ -169,9 +170,9 @@ namespace Interactables.Safe
                     {
                         foreach (var pinNumberObject in PinNumbersObjects)
                         {
-                            pinNumberObject.transform.GetChild(0).GetComponent<Text>().text = string.Empty;
+                            pinNumberObject.transform.GetChild(0).GetComponent<TMP_Text>().text = string.Empty;
                         }
-                        var safeText = GameObject.Find("SafeText").gameObject.GetComponent<Text>();
+                        var safeText = GameObject.Find("SafeText").gameObject.GetComponent<TMP_Text>();
                         safeText.text = "Decode safe with 4 different numbers. Take a look around have you seen anything suspicious?";
                         Clean();
                         IsCoolingDown = false;

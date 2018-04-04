@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -25,7 +26,7 @@ namespace Assets.Scripts.Interactables.Craft
             var contains = new bool[gameObjects.Length];
             for (int i = 0; i < gameObjects.Length; i++)
             {
-                gameObjectsText[i] = gameObjects[i].transform.GetChild(1).transform.GetComponent<Text>().text;
+                gameObjectsText[i] = gameObjects[i].transform.GetChild(1).transform.GetComponent<TMP_Text>().text;
                 contains[i] = checkInventory(gameObjectsText[i]);
                 if (contains[i]) counter++;
             }
